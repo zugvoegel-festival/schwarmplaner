@@ -186,7 +186,7 @@
       },
     },
     beforeCreate () {
-      // add current  orgalendar to local storage
+      // add current  schwarmvogel to local storage
       CalendarService.getCalendarBySlug(this.$route.params.slug)
         .then(response => {
           const payload = response.data

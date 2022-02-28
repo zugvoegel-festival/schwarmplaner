@@ -69,11 +69,8 @@ deploy_development:
     - git pull
     - git submodule update
     - echo $ANSIBLE_VAULT_PASSWORD > password
-    - ansible-playbook -i inventories/production/hosts.yml --limit services.lit-labs.de orgalendar_deploy_dev.yml --vault-password-file password
+    - ansible-playbook -i inventories/production/hosts.yml --limit services.lit-labs.de schwarmvogel_deploy_dev.yml --vault-password-file password
     - rm password
-
-
-
 
 build_frontend_production:
   tags:
@@ -134,7 +131,7 @@ deploy_production:
     - git pull
     - git submodule update
     - echo $ANSIBLE_VAULT_PASSWORD > password
-    - ansible-playbook -i inventories/production/hosts.yml --limit services.lit-labs.de orgalendar_deploy_prod.yml --vault-password-file password
+    - ansible-playbook -i inventories/production/hosts.yml --limit services.lit-labs.de schwarmvogel_deploy_prod.yml --vault-password-file password
     - rm password
   only:
     refs:

@@ -1,4 +1,4 @@
-# Frontend orgalendar
+# Frontend schwarmvogel
 
 Vue.js, Vuex, Vue Router, Vuelidate, BootstrapVue, Jest, Cypress
 

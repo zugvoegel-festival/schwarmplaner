@@ -43,7 +43,7 @@
               Erstelle deinen Eigenen
             </base-btn>
           </div>
-          <choose-orgalendar class="pt-6" />
+          <choose-schwarmvogel class="pt-6" />
         </v-responsive>
       </v-container>
     </v-sheet>

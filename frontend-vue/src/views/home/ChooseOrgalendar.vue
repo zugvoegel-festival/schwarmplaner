@@ -43,7 +43,7 @@
         const chosenOrgalendar = Object.values(this.existingOrgalendars)[item]
         const user = this.$store.getters.user
         if (chosenOrgalendar.id === user.calendarId) {
-          // known user -> go directly to orgalendar
+          // known user -> go directly to schwarmvogel
           this.$router.push({
             name: 'Calendar',
             params: { slug: chosenOrgalendar.slug },

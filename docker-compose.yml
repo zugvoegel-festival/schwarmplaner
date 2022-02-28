@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   nginx:
-    container_name: orgalendar-nginx
+    container_name: schwarmvogel-nginx
     image: nginx:stable
     depends_on:
       - api
@@ -15,7 +15,7 @@ services:
       - 80:80
 
   mysql:
-    container_name: orgalendar-db
+    container_name: schwarmvogel-db
     image: mysql
     networks:
       - internal
@@ -30,7 +30,7 @@ services:
       - TZ=Europe/Berlin
 
   api:
-    container_name: orgalendar-api
+    container_name: schwarmvogel-api
     build:
       context: ./api
       target: dev-stage
@@ -46,7 +46,7 @@ services:
       - ./api/.env.dev.docker
 
   frontend-vue:
-    container_name: orgalendar-frontend
+    container_name: schwarmvogel-frontend
     build:
       context: ./frontend-vue
       target: production-stage
