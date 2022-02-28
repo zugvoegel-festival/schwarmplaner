@@ -1,23 +1,9 @@
-# gchecker - Vaccination Status Manager
+# Schwarmvogel - Organize Your Shifts
 
-<p align="center">
-  <img src="frontend-vue/src/assets/gchecker-logo.svg" height=300px alt="gchecker" />
-</p>
-<p align="center">
-  <a href="https://matrix.to/#/#gchecker:matrix.org" target="_blank">
-    <img src="https://img.shields.io/matrix/gchecker:matrix.org" alt="martix chat" />
-  </a>
-</p>
 
 -------------------
 
 
-
-
-The German government requires companies to document the 3-G status (vaccinated,
-recovered or tested). gchecker is intended to provide digital assistance.
-
-A demo instance ist avalable at [gchecker.de](https://gchecker.de)
 
 ## How to start in your local environment
 
