@@ -1,0 +1,70 @@
+version: "3.7"
+services:
+  nginx:
+    container_name: orgalendar-nginx
+    image: nginx:stable
+    depends_on:
+      - api
+      - frontend-vue
+      - mysql
+    networks:
+      - internal
+    volumes:
+      - ./nginx/image-files/etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+
+  mysql:
+    container_name: orgalendar-db
+    image: mysql
+    networks:
+      - internal
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=testdb
+      - MYSQL_ROOT_PASSWORD=test
+      - TZ=Europe/Berlin
+
+  api:
+    container_name: orgalendar-api
+    build:
+      context: ./api
+      target: dev-stage
+    depends_on:
+      - mysql
+    networks:
+      - internal
+    ports:
+      - 3000:3000
+    volumes:
+      - ./api:/srv
+    env_file:
+      - ./api/.env.dev.docker
+
+  frontend-vue:
+    container_name: orgalendar-frontend
+    build:
+      context: ./frontend-vue
+      target: production-stage
+      args:
+        NODE_ENV: production
+        BASE_URL: /
+    volumes:
+      - "./frontend-vue/public/static/config.json:/srv/static/config.json"
+    environment:
+      - ORGA_BASE_URL=/
+      - ORGA_API_URL=http://localhost/api
+      - ORGA_TZ=Europe/Berlin
+      - ORGA_DATETIME=YYYY-MM-DD HH:mm:ss
+    depends_on:
+      - api
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge

@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: pylint-error-count
+        name: pylint-error-count
+        entry: ./eslinter.sh
+        language: script
+        types: [python]
+        pass_filenames: false

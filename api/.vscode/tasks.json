@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "dev",
+			"path": "api/",
+			"problemMatcher": [
+				"$eslint-compact"
+			],
+			"label": "npm: dev - api",
+			"detail": "cross-env NODE_ENV=development nodemon app/server.js"
+		}
+	]
+}

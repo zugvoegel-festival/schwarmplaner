@@ -1,0 +1,141 @@
+stages:
+  - build development
+  - deploy development
+  - build production
+  - deploy production
+
+cache:
+  key: "$CI_PIPELINE_ID"
+  paths:
+    - /root/.cache
+    - /root/.npm
+    - node_modules
+    - vendor
+
+.before_script_template: &before-script
+  before_script:
+    - echo "$CI_BUILD_TOKEN" | docker login -u gitlab-ci-token --password-stdin $REGISTRY_DOMAIN
+
+build_frontend_development:
+  tags:
+    - docker-build
+  stage: build development
+  image: docker:stable
+  variables:
+    NODE_ENV: production
+    BASE_URL: /
+  script:
+    - |
+      if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
+        tag=""
+        echo "Running on default branch '$CI_DEFAULT_BRANCH': tag = 'latest'"
+      else
+        tag="dev"
+        echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
+      fi
+    - appType="/frontend"
+    - cd frontend-vue
+    - docker build . --target production-stage --build-arg NODE_ENV=$NODE_ENV --build-arg BASE_URL=$BASE_URL -t "$CI_REGISTRY_IMAGE${appType}:${tag}"
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker push "$CI_REGISTRY_IMAGE${appType}:${tag}"
+
+build_api_development:
+  tags:
+    - docker-build
+  stage: build development
+  image: docker:stable
+  script:
+    - |
+      if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
+        tag=""
+        echo "Running on default branch '$CI_DEFAULT_BRANCH': tag = 'latest'"
+      else
+        tag="dev"
+        echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
+      fi
+    - appType="/api"
+    - cd api
+    - docker build . --target dev-stage -t "$CI_REGISTRY_IMAGE${appType}:${tag}"
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker push "$CI_REGISTRY_IMAGE${appType}:${tag}"
+
+deploy_development:
+  needs: ["build_api_development", "build_frontend_development"]
+  tags:
+    - ansible
+  stage: deploy development
+  script:
+    - cd ~/ansible/deployment
+    - git pull
+    - git submodule update
+    - echo $ANSIBLE_VAULT_PASSWORD > password
+    - ansible-playbook -i inventories/production/hosts.yml --limit services.lit-labs.de orgalendar_deploy_dev.yml --vault-password-file password
+    - rm password
+
+
+
+
+build_frontend_production:
+  tags:
+    - docker-build
+  stage: build production
+  image: docker:stable
+  variables:
+    NODE_ENV: production
+    BASE_URL: /
+  script:
+    - |
+      if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
+        tag=""
+        echo "Running on default branch '$CI_DEFAULT_BRANCH': tag = 'latest'"
+      else
+        tag="$CI_COMMIT_REF_SLUG"
+        echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
+      fi
+    - appType="/frontend"
+    - cd frontend-vue
+    - docker build . --target production-stage --build-arg NODE_ENV=$NODE_ENV --build-arg BASE_URL=$BASE_URL -t "$CI_REGISTRY_IMAGE${appType}:${tag}"
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker push "$CI_REGISTRY_IMAGE${appType}:${tag}"
+  only:
+    refs:
+      - tags
+
+build_api_production:
+  tags:
+    - docker-build
+  stage: build production
+  image: docker:stable
+  script:
+    - |
+      if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
+        tag=""
+        echo "Running on default branch '$CI_DEFAULT_BRANCH': tag = 'latest'"
+      else
+        tag=":$CI_COMMIT_REF_SLUG"
+        echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
+      fi
+    - appType="/api"
+    - cd api
+    - docker build . --target production-stage -t "$CI_REGISTRY_IMAGE${appType}:${tag}"
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker push "$CI_REGISTRY_IMAGE${appType}:${tag}"
+  only:
+    refs:
+      - tags
+
+deploy_production:
+  needs: ["build_api_production", "build_frontend_production"]
+  tags:
+    - ansible
+  stage: deploy production
+  script:
+    - cd ~/ansible/deployment
+    - git pull
+    - git submodule update
+    - echo $ANSIBLE_VAULT_PASSWORD > password
+    - ansible-playbook -i inventories/production/hosts.yml --limit services.lit-labs.de orgalendar_deploy_prod.yml --vault-password-file password
+    - rm password
+  only:
+    refs:
+      - tags

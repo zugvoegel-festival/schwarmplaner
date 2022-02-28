@@ -1,0 +1,22 @@
+version: "3.3"
+
+services:
+  mysqldb:
+    image: mysql
+    container_name: orga-dev-db
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=testdb
+      - MYSQL_ROOT_PASSWORD=test
+      - TZ=Europe/Berlin
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - orga-db-config-dev:/etc/mysql
+      - orga-db-data-dev:/var/lib/mysql
+    ports:
+      - 3307:3306
+
+volumes:
+  orga-db-config-dev: null
+  orga-db-data-dev: null

@@ -1,0 +1,6 @@
+{
+  "apiUrl": "http://localhost:3000",
+  "format": {
+    "dateTime": "YYYY-MM-DD HH:MM:SS"
+  }
+}

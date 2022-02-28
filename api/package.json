@@ -1,0 +1,99 @@
+{
+  "name": "gchecker-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "dev": "cross-env NODE_ENV=development nodemon app/server.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js --progress --profile",
+    "lint": "eslint ./app --fix",
+    "test": "cross-env NODE_ENV=test jest --coverage --detectOpenHandles --runInBand",
+    "migrate:up": "db-migrate up --verbose",
+    "migrate:down": "db-migrate down --verbose",
+    "migrate:reset": "db-migrate reset --verbose"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.12",
+    "bcryptjs": "^2.4.3",
+    "bunyan": "^1.8.15",
+    "bunyan-middleware": "^1.0.1",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "db-migrate": "^0.11.12",
+    "db-migrate-mysql": "^2.1.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "express-validator": "^6.12.0",
+    "helmet": "^4.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "mysql2": "^2.3.3",
+    "nodemailer": "^6.6.2",
+    "npm-check-updates": "^11.7.1",
+    "promise-mysql": "^5.0.3",
+    "sequelize": "^6.11.0",
+    "sequelize-erd": "^1.3.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/preset-env": "^7.14.7",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.12.4",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-lodash": "^3.3.4",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jest": "^24.3.6",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.24.0",
+    "husky": "^6.0.0",
+    "jest": "^27.4.5",
+    "lint-staged": "^11.0.0",
+    "lodash-webpack-plugin": "^0.11.6",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.3.1",
+    "supertest": "^6.1.3",
+    "terser-webpack-plugin": "^5.1.3",
+    "webpack": "^5.40.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "resetMocks": true,
+    "globalSetup": "./jest.setup.js",
+    "collectCoverageFrom": [
+      "app/**/*.js",
+      "!**/node_modules/**",
+      "!**/__tests__/**",
+      "!**/coverage/**"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
