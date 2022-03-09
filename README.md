@@ -8,6 +8,9 @@ https://www.figma.com/proto/Ht9BKR6toCg3TKde2W3XTS/ZV-Schwarmplaner?node-id=0%3A
 -------------------
 
 
+https://www.bezkoder.com/vue-js-node-js-express-mysql-crud-example/
+
+
 
 ## How to start in your local environment
 
