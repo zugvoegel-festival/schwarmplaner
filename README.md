@@ -12,6 +12,9 @@ https://www.bezkoder.com/vue-js-node-js-express-mysql-crud-example/
 
 https://github.com/bezkoder/vue-js-node-js-express-mysql
 
+Repo structure based on
+
+https://github.com/chrisleekr/nodejs-vuejs-mysql-boilerplate
 
 ## How to start in your local environment
 
