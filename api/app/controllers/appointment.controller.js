@@ -1,4 +1,4 @@
-const { repeatations } = require('../config/enums');
+
 const { handleSuccess, handleInternalError, handleNotFound,handleValidationError } = require('../helpers/response');
 const db = require('../models');
 const Appointment = db.Appointment;

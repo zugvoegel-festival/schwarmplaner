@@ -1,10 +1,17 @@
-const bunyan = require('bunyan');
+
+var bunyan = require('bunyan')
+  , bformat = require('bunyan-format')
+  , formatOut = bformat({ outputMode: 'short' })
+  ;
+
+
 const packageJson = require('../../package.json');
 
 const logger = bunyan.createLogger({
-  name: 'api',
+  name: 'schwarmvogel api',
   version: packageJson.version,
-  streams: [{ stream: process.stdout, level: process.env.NODE_ENV === 'development' ? bunyan.TRACE : bunyan.INFO }]
+  stream: formatOut,
+  level: process.env.NODE_ENV === 'development' ? bunyan.DEBUG : bunyan.INFO
 });
 logger.info({ NODE_ENV: process.env.NODE_ENV }, 'API logger loaded');
 
