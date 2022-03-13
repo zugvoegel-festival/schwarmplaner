@@ -1,9 +1,9 @@
 module.exports = {
-  HOST: process.env.ORGA_DB_HOST,
-  USER: process.env.ORGA_DB_USER,
-  PASSWORD: process.env.ORGA_DB_PASSWORD,
-  DB: process.env.ORGA_DB_NAME,
-  PORT: process.env.ORGA_DB_PORT,
+  HOST: process.env.SCHWARM_DB_HOST,
+  USER: process.env.SCHWARM_DB_USER,
+  PASSWORD: process.env.SCHWARM_DB_PASSWORD,
+  DB: process.env.SCHWARM_DB_NAME,
+  PORT: process.env.SCHWARM_DB_PORT,
   LOGGING: process.env.CHECK_DB_LOGGING || false,
   dialect: 'mysql',
   pool: {

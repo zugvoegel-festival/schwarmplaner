@@ -1,8 +1,5 @@
 const dbConfig = require("../config/db.config.js");
 const Sequelize = require("sequelize");
-const AppointmentModel = require("./appointment.model.js");
-const CalendarModel = require("./calendar.model.js");
-const UserModel = require("./user.model.js");
 
 const { logger } = require('../helpers/logger');
 const moduleLogger = logger.child({ module: 'db' });
@@ -33,28 +30,42 @@ if (moduleLogger.debug()) {
   moduleLogger.info('DBCONFIG', data);
 }
 
-const Appointment = AppointmentModel(sequelize, Sequelize);
-const Calendar = CalendarModel(sequelize, Sequelize);
+
+/////////////////////////////////////////////////////////////////
+///  Below here DB Motels are setup and relations are set  //////
+/////////////////////////////////////////////////////////////////
+
+
+const ShiftModel = require("./shift.model.js");
+const LocationModel = require("./location.model.js");
+const UserModel = require("./user.model.js");
+
+
+// Define models
+const Shift = ShiftModel(sequelize, Sequelize);
+const Location = LocationModel(sequelize, Sequelize);
 const User = UserModel(sequelize, Sequelize);
 
-Calendar.hasMany(Appointment, { as: "appointment" });
+//Define relations
+Location.hasMany(Shift, { as: "shift", foreignKey: "location_id" });
 
-Appointment.belongsTo(Calendar, {
-  foreignKey: "calendarId",
-  as: "calendar",
-});
+User.belongsToMany(Shift, {
+  as: 'shifts',
+  through: 'shift_user',
+  foreignKey: 'user_id',
+  otherKey: 'shift_id',
+  onDelete: 'CASCADE'
+})
 
-Calendar.hasMany(User, { as: "user" });
 
-User.belongsTo(Calendar, {
-  foreignKey: "calendarId",
-  as: "calendar",
-});
+
+
+
 
 module.exports = {
   sequelize,
   Sequelize,
-  Appointment,
-  Calendar,
+  Shift,
+  Location,
   User,
 };

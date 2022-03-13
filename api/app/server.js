@@ -12,7 +12,7 @@ const moduleLogger = logger.child({ module: 'server' });
 
 const app = express();
 
-const port = process.env.ORGA_API_PORT || 3000;
+const port = process.env.SCHWARM_API_PORT || 3000;
 
 app.set('trust proxy', true);
 app.use(helmet());
@@ -36,12 +36,13 @@ app.use(express.json()); /* bodyParser.json() is deprecated */
 app.use(express.urlencoded({ extended: true })); /* bodyParser.urlencoded() is deprecated */
 
 const db = require('./models');
-const { handleSuccess, handleNotFound } = require('./helpers/response');
 
+
+const { handleSuccess, handleNotFound } = require('./helpers/response');
 db.sequelize
   .sync({ alter: true })
   .then(data => {
-    moduleLogger.info('Database is reachable', data);
+    moduleLogger.debug('Database is reachable');
   })
   .catch(err => {
     moduleLogger.error('Error syncing sequelize', err);
@@ -51,9 +52,17 @@ db.sequelize
 //  console.log("Drop and re-sync db.");
 // });
 
-require('./routes/appointment.routes')(app);
-require('./routes/calendar.routes')(app);
+
+
+/////////////////////////////////////////////////////////////////
+///         Below here define routes for API               //////
+/////////////////////////////////////////////////////////////////
+
+require('./routes/shift.routes')(app);
+require('./routes/location.routes')(app);
 require('./routes/user.routes')(app);
+
+
 
 // TODO:  only in dev env
 sequelizeErd({ source: db.sequelize }).then(res => {

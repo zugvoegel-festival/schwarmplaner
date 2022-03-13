@@ -14,10 +14,9 @@ import moment from 'moment'
 
 import VueLogger from 'vuejs-logger'
 
-const isProduction = process.env.NODE_ENV === 'production'
 const loggerOptions = {
   isEnabled: true,
-  logLevel: isProduction ? 'error' : 'debug',
+  logLevel: process.env.NODE_ENV === 'production' ? 'error' : 'debug',
   stringifyArguments: false,
   showLogLevel: true,
   showMethodName: true,
