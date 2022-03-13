@@ -1,11 +1,11 @@
 <template>
-  <div> Settings </div>
+  <div> Shifts </div>
 </template>
 
 <script>
   export default {
-    name: 'Settings',
-    metaInfo: { title: 'Settings' },
+    name: 'Shifts',
+    metaInfo: { title: 'Shifts' },
   }
 </script>
 

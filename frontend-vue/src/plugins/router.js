@@ -16,13 +16,13 @@ const routes = [
     children: [
       {
         path: '/dashboard',
-        name: 'dashboard',
+        name: 'adminDashboard',
         component: () => import('../views/admin/dashboard/Index'),
       },
       {
-        path: '/shift',
-        name: 'shift',
-        component: () => import('../views/admin/shift/Index'),
+        path: '/shifts',
+        name: 'shifts',
+        component: () => import('../views/admin/shifts/Index'),
       },
       {
         path: '/helper',
