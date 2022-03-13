@@ -1,34 +1,30 @@
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define("user", {
-    surname: {
+  const Shift = sequelize.define("shift", {
+    name: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    start: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+    },
+    end: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+    },
+    color: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    lastname: {
+    type: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    password: {
+    amountHelper: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    phone: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    role: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    crew: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    }
   });
 
-  return User;
+  return Shift;
 };

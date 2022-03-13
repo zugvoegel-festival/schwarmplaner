@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Calendar = sequelize.define("calendar", {
+  const Location = sequelize.define("location", {
     slug: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -11,5 +11,5 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  return Calendar;
+  return Location;
 };
