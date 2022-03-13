@@ -33,10 +33,18 @@ if (moduleLogger.debug()) {
   moduleLogger.info('DBCONFIG', data);
 }
 
+
+/////////////////////////////////////////////////////////////////
+///  Below here DB Motels are setup and relations are set  //////
+/////////////////////////////////////////////////////////////////
+
+
+// Define models
 const Appointment = AppointmentModel(sequelize, Sequelize);
 const Calendar = CalendarModel(sequelize, Sequelize);
 const User = UserModel(sequelize, Sequelize);
 
+//Define relations
 Calendar.hasMany(Appointment, { as: "appointment" });
 
 Appointment.belongsTo(Calendar, {
@@ -50,6 +58,12 @@ User.belongsTo(Calendar, {
   foreignKey: "calendarId",
   as: "calendar",
 });
+
+
+
+
+
+
 
 module.exports = {
   sequelize,

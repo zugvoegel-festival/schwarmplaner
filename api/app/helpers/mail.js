@@ -9,22 +9,22 @@ const moduleLogger = logger.child({ module: 'mail' });
 class Mail {
   constructor() {
     this.transportConfig = {
-      host: process.env.ORGA_SMTP_HOST,
-      port: process.env.ORGA_SMTP_PORT
+      host: process.env.SCHWARM_SMTP_HOST,
+      port: process.env.SCHWARM_SMTP_PORT
       // secure: process.env.SMTP_SECURE === 'true'
     };
 
-    if (process.env.ORGA_MTP_SECURE === 'true') {
+    if (process.env.SCHWARM_MTP_SECURE === 'true') {
       this.transportConfig.auth = {
-        user: process.env.ORGA_SMTP_AUTH_USER,
-        pass: process.env.ORGA_SMTP_AUTH_PASS
+        user: process.env.SCHWARM_SMTP_AUTH_USER,
+        pass: process.env.SCHWARM_SMTP_AUTH_PASS
       };
     }
 
-    if (process.env.ORGA_SMTP_DEBUG === 'true') {
+    if (process.env.SCHWARM_SMTP_DEBUG === 'true') {
       this.transportConfig.debug = true;
     }
-    if (process.env.ORGA_SMTP_LOGGER === 'true') {
+    if (process.env.SCHWARM_SMTP_LOGGER === 'true') {
       this.transportConfig.logger = true;
     }
 
@@ -61,7 +61,7 @@ class Mail {
       const renderedHtml = Mail.replaceTemplateValues(html, templateValues);
       moduleLogger.debug({ renderedHtml }, 'HTML file loaded for email, send now');
       const sendData = {
-        from: from || `"${process.env.ORGA_EMAIL_FROM_NAME}" <${process.env.ORGA_EMAIL_FROM_ADDRESS}>`,
+        from: from || `"${process.env.SCHWARM_EMAIL_FROM_NAME}" <${process.env.SCHWARM_EMAIL_FROM_ADDRESS}>`,
         to,
         subject,
         html: renderedHtml
@@ -83,10 +83,10 @@ class Mail {
     await this.sendEmail({
       to,
       subject: 'Email verification',
-      templatePath: 'app/templates/register-confirm.html',
+      templatePath: 'app/emailtemplates/register-confirm.html',
       templateValues: {
         first_name: name,
-        verification_link: `${process.env.ORGA_FRONTEND_URL}/register-confirm?key=${verficationToken}`
+        verification_link: `${process.env.SCHWARM_FRONTEND_URL}/register-confirm?key=${verficationToken}`
       }
     })
       .then(success => {

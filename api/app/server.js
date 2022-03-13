@@ -12,7 +12,7 @@ const moduleLogger = logger.child({ module: 'server' });
 
 const app = express();
 
-const port = process.env.ORGA_API_PORT || 3000;
+const port = process.env.SCHWARM_API_PORT || 3000;
 
 app.set('trust proxy', true);
 app.use(helmet());

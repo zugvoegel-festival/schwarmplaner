@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const { logger } = require('../helpers/logger');
 const {  handlePermissionError } = require('../helpers/response')
 const moduleLogger = logger.child({ module: 'authMiddleware' });
-const secretKey = process.env.ORGA_JWT_SECRET_KEY;
+const secretKey = process.env.SCHWARM_JWT_SECRET_KEY;
 
 const db = require('../models');
 
