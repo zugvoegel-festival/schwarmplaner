@@ -1,25 +1,25 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-import { auth } from './auth.module';
+import { auth } from './auth.module'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    auth
+    auth,
   },
   state: {
     config: {},
     user: {},
     calendar: {},
-    cache: {}
+    cache: {},
   },
   getters: {
-    config(state) {
-      return state.config;
+    config (state) {
+      return state.config
     },
-    cache(state) {
+    cache (state) {
       if (
         state.cache === null ||
         (state.cache && // 👈 null and undefined check
@@ -27,14 +27,14 @@ export default new Vuex.Store({
           Object.getPrototypeOf(state.cache) === Object.prototype)
       ) {
         // store object is empty. check localstorage
-        state.cache = JSON.parse(localStorage.getItem('schwarmvogelCache'));
+        state.cache = JSON.parse(localStorage.getItem('schwarmvogelCache'))
         if (state.cache === null) {
-          state.cache = {};
+          state.cache = {}
         }
       }
-      return state.cache;
+      return state.cache
     },
-    user(state) {
+    user (state) {
       if (
         state.user === null ||
         (state.user && // 👈 null and undefined check
@@ -43,14 +43,14 @@ export default new Vuex.Store({
       ) {
         // store object is empty. check localstorage
 
-        state.user = JSON.parse(localStorage.getItem('schwarmvogelUser'));
+        state.user = JSON.parse(localStorage.getItem('schwarmvogelUser'))
         if (state.user === null) {
-          state.user = {};
+          state.user = {}
         }
       }
-      return state.user;
+      return state.user
     },
-    calendar(state) {
+    calendar (state) {
       if (
         state.calendar === null ||
         (state.calendar && // 👈 null and undefined check
@@ -58,50 +58,50 @@ export default new Vuex.Store({
           Object.getPrototypeOf(state.calendar) === Object.prototype)
       ) {
         // store object is empty. check localstorage
-        state.calendar = JSON.parse(localStorage.getItem('schwarmvogelCalendar'));
+        state.calendar = JSON.parse(localStorage.getItem('schwarmvogelCalendar'))
         if (state.calendar === null) {
-          state.calendar = {};
+          state.calendar = {}
         }
       }
-      return state.calendar;
-    }
+      return state.calendar
+    },
   },
   mutations: {
     SET_CONFIG: (state, data) => {
-      state.config = data;
+      state.config = data
     },
     SET_USER: (state, data) => {
-      localStorage.setItem('schwarmvogelUser', JSON.stringify(data));
-      state.user = data;
+      localStorage.setItem('schwarmvogelUser', JSON.stringify(data))
+      state.user = data
     },
     SET_CALENDAR: (state, data) => {
-      localStorage.setItem('schwarmvogelCalendar', JSON.stringify(data));
-      state.calendar = data;
+      localStorage.setItem('schwarmvogelCalendar', JSON.stringify(data))
+      state.calendar = data
     },
     ADD_TO_CACHE: (state, data) => {
-      let cache = JSON.parse(localStorage.getItem('schwarmvogelCache'));
+      let cache = JSON.parse(localStorage.getItem('schwarmvogelCache'))
       if (cache === null) {
         // cache empty . create new
-        cache = {};
+        cache = {}
       }
-      cache[data.id] = data;
-      localStorage.setItem('schwarmvogelCache', JSON.stringify(cache));
-      state.cache = cache;
-    }
+      cache[data.id] = data
+      localStorage.setItem('schwarmvogelCache', JSON.stringify(cache))
+      state.cache = cache
+    },
   },
   actions: {
     setConfig: ({ commit, state }, value) => {
-      commit('SET_CONFIG', value);
-      return state.config;
+      commit('SET_CONFIG', value)
+      return state.config
     },
     setUser: ({ commit, state }, value) => {
-      commit('SET_USER', value);
-      return state.user;
+      commit('SET_USER', value)
+      return state.user
     },
     setCalendar: ({ commit, state }, value) => {
-      commit('SET_CALENDAR', value);
-      commit('ADD_TO_CACHE', value);
-      return state.calendar;
-    }
-  }
-});
+      commit('SET_CALENDAR', value)
+      commit('ADD_TO_CACHE', value)
+      return state.calendar
+    },
+  },
+})

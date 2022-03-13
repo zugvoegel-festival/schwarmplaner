@@ -7,28 +7,76 @@ const routes = [
   {
     path: '/',
     name: '',
-
-    component: () => import('../layouts/default/Index'),
+    component: () => import('../views/login/Index'),
+  },
+  {
+    path: '/admin',
+    name: '',
+    component: () => import('../views/layouts/Admin'),
     children: [
       {
-        path: '',
-        name: 'Start',
-        component: () => import('../views/home/Index'),
+        path: '/dashboard',
+        name: 'dashboard',
+        component: () => import('../views/admin/dashboard/Index'),
       },
       {
-        path: '/new',
-        name: 'New',
-        component: () => import('../views/new/Index'),
+        path: '/shift',
+        name: 'shift',
+        component: () => import('../views/admin/shift/Index'),
       },
       {
-        path: '/:slug',
-        name: 'Calendar',
-        component: () => import('../views/calendar/Index'),
+        path: '/helper',
+        name: 'helper',
+        component: () => import('../views/admin/helper/Index'),
       },
       {
-        path: '/:slug/choose',
-        name: 'ChooseUser',
-        component: () => import('../views/chooseUser/ChooseUser'),
+        path: '/settings',
+        name: 'settings',
+        component: () => import('../views/admin/settings/Index'),
+      },
+    ],
+  },
+  {
+    path: '/user',
+    name: '',
+    component: () => import('../views/layouts/User'),
+    children: [
+      {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: () => import('../views/user/dashboard/Index'),
+      },
+      {
+        path: '/shift',
+        name: 'shift',
+        component: () => import('../views/user/shift/Index'),
+      },
+      {
+        path: '/trade',
+        name: 'trade',
+        component: () => import('../views/user/trade/Index'),
+      },
+      {
+        path: '/coordinator',
+        name: 'coordinator',
+        component: () => import('../views/user/coordinator/Index'),
+      },
+    ],
+  },
+  {
+    path: '/locations',
+    name: '',
+    component: () => import('../views/layouts/Locations'),
+    children: [
+      {
+        path: '/rotator',
+        name: 'rotator',
+        component: () => import('../views/locations/rotator/Index'),
+      },
+      {
+        path: '/static',
+        name: 'static',
+        component: () => import('../views/locations/static/Index'),
       },
     ],
   },
