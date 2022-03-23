@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: 'Trade',
+    name: 'TradeView',
     metaInfo: { title: 'Trade' },
   }
 </script>

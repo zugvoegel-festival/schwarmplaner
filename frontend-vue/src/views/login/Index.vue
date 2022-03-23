@@ -1,12 +1,15 @@
 <template>
-  <div> LOGIN </div>
+  <div>
+    LOGIN
+    <v-btn to="/admin"></v-btn>
+  </div>
 </template>
 
 <script>
-  export default {
-    name: 'Login',
-    metaInfo: { title: 'Login' },
-  }
+export default {
+  name: "LoginView",
+  metaInfo: { title: "Login" },
+};
 </script>
 
 <style></style>

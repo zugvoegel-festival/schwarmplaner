@@ -1,13 +1,12 @@
-// vue.config.js
-
-module.exports = {
-  publicPath: process.env.BASE_URL || '/',
+const { defineConfig } = require("@vue/cli-service");
+module.exports = defineConfig({
+  transpileDependencies: ["vuetify"],
   configureWebpack: {
-    devtool: 'source-map',
+    devtool: "source-map",
     performance: {
       hints: false,
       maxEntrypointSize: 512000,
-      maxAssetSize: 512000
-    }
-  }
-};
+      maxAssetSize: 512000,
+    },
+  },
+});

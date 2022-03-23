@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: 'Coordinator',
+    name: 'CoordinatorView',
     metaInfo: { title: 'Coordinator' },
   }
 </script>

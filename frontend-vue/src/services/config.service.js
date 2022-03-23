@@ -1,37 +1,24 @@
-import Vue from 'vue'
-import axios from 'axios'
-import * as vueConfig from '../../vue.config'
+//import Vue from "vue";
+//import axios from "axios";
+//import * as vueConfig from "../../vue.config";
 
-import store from '../store/index'
+//import { configStore } from "../stores/config.store";
+
 class ConfigService {
-  async loadConfig () {
-    return axios
+  async loadConfig() {
+    return "";
+
+    /*axios
       .get(`${vueConfig.publicPath}static/config.json`)
-      .then(response => {
-        store.dispatch('setConfig', response.data)
-        Vue.$log.debug(response.data)
+      .then((response) => {
+        configStore.set(response.data);
+        Vue.$log.debug(response.data);
       })
-      .catch(e => {
-        Vue.$log.error(e)
-      })
-  }
-
-  set (key, value) {
-    // store.state.config[key] = value
-  }
-
-  get (key) {
-    return window.App.$store.getters.config[key]
-  }
-
-  getApiUrl () {
-    if (this.get('apiUrl')) {
-      return this.get('apiUrl')
-    }
-    console.log('NO API URL IN CONFIG')
-
-    return 'http://'
+      .catch((e) => {
+        Vue.$log.error(e);
+      });
+      */
   }
 }
 
-export default new ConfigService()
+export default new ConfigService();

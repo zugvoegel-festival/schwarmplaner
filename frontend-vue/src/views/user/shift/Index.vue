@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: 'Shift',
+    name: 'ShiftView',
     metaInfo: { title: 'Shift' },
   }
 </script>
