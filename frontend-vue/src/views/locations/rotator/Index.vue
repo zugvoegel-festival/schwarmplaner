@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: 'Rotator',
+    name: 'RotatorView',
     metaInfo: { title: 'Rotator' },
   }
 </script>

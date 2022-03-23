@@ -17,7 +17,7 @@ class ConfigService {
   }
 
   set (key, value) {
-    // store.state.config[key] = value
+    store.state.config[key] = value
   }
 
   get (key) {

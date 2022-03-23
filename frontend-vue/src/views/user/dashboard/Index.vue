@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: 'Dashboard',
+    name: 'DashboardView',
     metaInfo: { title: 'Dashboard' },
   }
 </script>

@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: 'Static',
+    name: 'StaticView',
     metaInfo: { title: 'Static' },
   }
 </script>

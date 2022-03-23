@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: 'Helper',
+    name: 'HelperView',
     metaInfo: { title: 'Helper' },
   }
 </script>

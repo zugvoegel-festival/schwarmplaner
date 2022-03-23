@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: 'Login',
+    name: 'LoginView',
     metaInfo: { title: 'Login' },
   }
 </script>

@@ -10,7 +10,7 @@
 
 <script>
   export default {
-    name: 'Start',
+    name: 'StartView',
 
     components: {
       HomeAppBar: () => import('./components/AppBar'),

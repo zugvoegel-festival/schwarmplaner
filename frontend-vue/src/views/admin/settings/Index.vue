@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: 'Settings',
+    name: 'SettingsView',
     metaInfo: { title: 'Settings' },
   }
 </script>
