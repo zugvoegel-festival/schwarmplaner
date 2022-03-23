@@ -20,7 +20,16 @@ https://github.com/chrisleekr/nodejs-vuejs-mysql-boilerplate
 
 ## How to start your local dev environment
 
+Requierments
 
+Install vuel cli 
+```sh 
+
+npm install -g @vue/cli
+# OR
+yarn global add @vue/cli
+
+```
 1. open /api and /frontend-vue in two seperate vscode windows
 
 ```sh
@@ -33,6 +42,6 @@ $ code ./api && code ./frontend-vue
 3. start api
     1. press F5 to start node server and attach debug session in your vscode api window
 4. start frontend
-    1. run in /frontend-vue `npm run dev` 
+    1. run in /frontend-vue `npm run serve` 
     2. press F5 to attach debug session in your vscode frontend-vue window
 
