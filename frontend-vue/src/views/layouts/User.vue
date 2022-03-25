@@ -1,21 +1,27 @@
 <template>
   <v-app>
-    <home-app-bar />
-
-    <home-view />
-
+    <home-app-bar v-on:showDrawer="showDrawer" />
+    <home-view :drawer="drawer" />
     <home-footer />
   </v-app>
 </template>
 
 <script>
-  export default {
-    name: 'StartView',
-
-    components: {
-      HomeAppBar: () => import('./components/AppBar'),
-      HomeFooter: () => import('./components/Footer'),
-      HomeView: () => import('./components/View'),
+export default {
+  name: "StartView",
+  data: () => ({
+    drawer: false,
+    drawerPermanent: true,
+  }),
+  methods: {
+    showDrawer(val) {
+      this.drawer = val;
     },
-  }
+  },
+  components: {
+    HomeAppBar: () => import("./components/AppBar.vue"),
+    HomeFooter: () => import("./components/Footer.vue"),
+    HomeView: () => import("./components/View.vue"),
+  },
+};
 </script>

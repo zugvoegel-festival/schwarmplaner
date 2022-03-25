@@ -27,7 +27,7 @@ export default {
     next() {
       //success
       //to Dashboard
-      this.$router.push("userDashboard");
+      this.$router.push("user");
       //fail
       // show error message and do nothing
     },

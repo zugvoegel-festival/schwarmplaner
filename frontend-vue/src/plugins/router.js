@@ -11,12 +11,12 @@ const routes = [
   },
   {
     path: "/admin",
-    name: "admin",
+
     component: () => import("../views/layouts/Admin"),
     children: [
       {
-        path: "/admin",
-        name: "adminDashboard",
+        path: "/",
+        name: "admin",
         component: () => import("../views/admin/dashboard/Index"),
       },
       {
@@ -38,12 +38,11 @@ const routes = [
   },
   {
     path: "/user",
-    name: "",
     component: () => import("../views/layouts/User"),
     children: [
       {
-        path: "/dashboard",
-        name: "userDashboard",
+        path: "/",
+        name: "user",
         component: () => import("../views/user/dashboard/Index"),
       },
       {
@@ -65,7 +64,6 @@ const routes = [
   },
   {
     path: "/locations",
-    name: "",
     component: () => import("../views/layouts/Locations"),
     children: [
       {
