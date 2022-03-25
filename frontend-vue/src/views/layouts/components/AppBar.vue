@@ -18,44 +18,54 @@
       />
       <base-heading title="SCHWARMPLANER" />
       <v-spacer />
+      <v-app-bar-nav-icon
+        v-if="!$vuetify.breakpoint.mdAndUp"
+        @click.stop="drawer = !drawer"
+      ></v-app-bar-nav-icon>
     </v-app-bar>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'HomeAppBar',
-    data: () => ({
-      drawer: null,
-      switch1: false,
-    }),
-    computed: {
-      loggedIn () {
-        return this.$store.state.auth.status.loggedIn
-      },
-      isNotHome () {
-        return this.$route.name !== 'Start'
-      },
-      showLogoutBtn () {
-        return this.loggedIn && this.isNotHome
-      },
+export default {
+  name: "HomeAppBar",
+  data: () => ({
+    drawer: false,
+  }),
+  methods: {
+    toStart() {
+      const path = "/";
+      if (this.$route.path !== path) this.$router.push(path);
     },
-    methods: {
-      toStart () {
-        const path = '/'
-        if (this.$route.path !== path) this.$router.push(path)
-      },
 
-      logout () {
-        this.$store.dispatch('auth/logout')
-        this.$router.go()
-      },
+    logout() {
+      this.$store.dispatch("auth/logout");
+      this.$router.go();
     },
-  }
+  },
+
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    },
+    isNotHome() {
+      return this.$route.name !== "Start";
+    },
+    showLogoutBtn() {
+      return this.loggedIn && this.isNotHome;
+    },
+  },
+  watch: {
+    drawer: function (val) {
+      this.$emit("showDrawer", val);
+    },
+  },
+};
 </script>
 
 <style scoped>
 .filter-accent2 {
-  filter: invert(10%) sepia(98%) saturate(7351%) hue-rotate(294deg) brightness(71%) contrast(106%);
+  filter: invert(10%) sepia(98%) saturate(7351%) hue-rotate(294deg)
+    brightness(71%) contrast(106%);
 }
 </style>
