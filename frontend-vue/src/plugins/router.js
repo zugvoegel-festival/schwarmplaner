@@ -15,7 +15,7 @@ const routes = [
     component: () => import("../views/layouts/Admin"),
     children: [
       {
-        path: "/admin",
+        path: "/",
         name: "adminDashboard",
         component: () => import("../views/admin/dashboard/Index"),
       },
@@ -42,7 +42,7 @@ const routes = [
     component: () => import("../views/layouts/User"),
     children: [
       {
-        path: "/dashboard",
+        path: "/",
         name: "userDashboard",
         component: () => import("../views/user/dashboard/Index"),
       },

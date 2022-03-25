@@ -38,7 +38,7 @@ export default {
     next() {
       //success
       //to Dashboard
-      this.$router.push("adminDashboard");
+      this.$router.push("admin");
       //fail
       // show error message and do nothing
     },
