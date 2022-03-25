@@ -43,7 +43,7 @@ const routes = [
     children: [
       {
         path: "/dashboard",
-        name: "dashboard",
+        name: "userDashboard",
         component: () => import("../views/user/dashboard/Index"),
       },
       {

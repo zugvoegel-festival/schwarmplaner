@@ -5,49 +5,44 @@
       <v-card-subtitle>
         <v-img width="250" src="favicon2.svg"></v-img>
       </v-card-subtitle>
-      <v-card-text>
-        <v-text-field
-          label="Email"
-          :rules="emailRules"
-          hide-details="auto"
-        ></v-text-field>
-      </v-card-text>
-      <v-card-actions>
-        <v-spacer />
-        <v-btn :disabled="valid" @click="next">Weiter</v-btn>
-      </v-card-actions>
+      <EmailCard
+        v-if="cardType == 'email'"
+        v-on:setCardType="setCardType"
+      ></EmailCard>
+      <AdminCard
+        v-if="cardType == 'admin'"
+        v-on:setCardType="setCardType"
+      ></AdminCard>
+      <UserCard
+        v-if="cardType == 'user'"
+        v-on:setCardType="setCardType"
+      ></UserCard>
+      <RegisterCard
+        v-if="cardType == 'register'"
+        v-on:setCardType="setCardType"
+      ></RegisterCard>
     </v-card>
   </div>
 </template>
 
 <script>
+import EmailCard from "./EmailCard.vue";
+import AdminCard from "./AdminCard.vue";
+import UserCard from "./UserCard.vue";
+import RegisterCard from "./RegisterCard.vue";
+
 export default {
   name: "LoginView",
   metaInfo: { title: "Login" },
   data: () => ({
-    test: "",
-    emailRules: [
-      (value) => !!value || "Required.",
-      (value) => (value || "").length <= 20 || "Max 20 characters",
-      (value) => {
-        const pattern =
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return pattern.test(value) || "Invalid e-mail.";
-      },
-    ],
+    cardType: "register",
   }),
-  computed: {
-    valid: function () {
-      return this.emailRules[3];
-    },
-  },
-
   methods: {
-    next() {
-      this.test = "asd";
-      console.log("sd");
+    setCardType(type) {
+      this.cardType = type;
     },
   },
+  components: { EmailCard, AdminCard, UserCard, RegisterCard },
 };
 </script>
 
