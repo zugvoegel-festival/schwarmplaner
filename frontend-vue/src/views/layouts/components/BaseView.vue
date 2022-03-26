@@ -9,11 +9,11 @@
     >
       <v-list nav dense>
         <v-list-item-group active-class="deep-purple--text text--accent-4">
-          <v-list-item to="/user">
+          <v-list-item to="/admin">
             <v-list-item-title>Übersicht</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/shift">
+          <v-list-item to="/shifts">
             <v-list-item-title>Schichten</v-list-item-title>
           </v-list-item>
 
