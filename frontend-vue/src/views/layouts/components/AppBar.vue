@@ -29,12 +29,17 @@
 <script>
 export default {
   name: "HomeAppBar",
+  props: {
+    useDrawer: { type: Boolean, default: true },
+    iconLink: { type: String, default: "/" },
+  },
   data: () => ({
     drawer: false,
   }),
+
   methods: {
     toStart() {
-      const path = "/";
+      const path = this.iconLink;
       if (this.$route.path !== path) this.$router.push(path);
     },
 

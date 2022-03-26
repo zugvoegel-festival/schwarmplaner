@@ -1,6 +1,7 @@
 <template>
   <v-main>
     <v-navigation-drawer
+      v-if="useDrawer"
       absolute
       right
       v-model="showDrawer"
@@ -41,6 +42,10 @@
 export default {
   name: "BaseView",
   props: {
+    useDrawer: {
+      type: Boolean,
+      default: true,
+    },
     drawer: {
       type: Boolean,
       default: false,

@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <home-app-bar v-on:showDrawer="showDrawer" />
-    <home-view :drawer="drawer" />
+    <home-app-bar :useDrawer="false" iconLink="/user" />
+    <home-view :useDrawer="false" />
     <home-footer />
   </v-app>
 </template>
@@ -19,9 +19,9 @@ export default {
     },
   },
   components: {
-    HomeAppBar: () => import("./components/BaseAppBar.vue"),
+    HomeAppBar: () => import("./components/AppBar.vue"),
     HomeFooter: () => import("./components/Footer.vue"),
-    HomeView: () => import("./components/UserView.vue"),
+    HomeView: () => import("./components/BaseView.vue"),
   },
 };
 </script>
