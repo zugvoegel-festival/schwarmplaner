@@ -1,55 +1,71 @@
-import http from './http-common'
-import ConfigService from './config.service'
+import http from "./http-common";
+//import ConfigService from "./config.service";
 
 class AuthService {
-  create (data) {
-    console.log('create new bubble', ConfigService.getApiUrl())
+  create(data) {
     return http
-      .post(`${ConfigService.getApiUrl()}/auth/new`, data)
-      .then(response => {
-        console.log('success', response)
+      .post(`/auth/new`, data)
+      .then((response) => {
+        console.log("success", response);
         if (response.data.authToken) {
-          localStorage.setItem('user', JSON.stringify(response.data))
+          localStorage.setItem("user", JSON.stringify(response.data));
         }
-        return response.data
+        return response.data;
       })
-      .catch(e => {
-        console.log('error', e)
-      })
+      .catch((e) => {
+        console.log("error", e);
+      });
   }
 
-  confirmPasswordAndLogin (data) {
+  confirmPasswordAndLogin(data) {
     return http
-      .post(`${ConfigService.getApiUrl()}/auth/confirm`, data)
-      .then(response => {
+      .post(`/auth/confirm`, data)
+      .then((response) => {
         if (response.data.authToken) {
-          localStorage.setItem('user', JSON.stringify(response.data))
+          localStorage.setItem("user", JSON.stringify(response.data));
         }
-        return response
+        return response;
       })
-      .catch(e => {
-        console.log(e)
-      })
+      .catch((e) => {
+        console.log(e);
+      });
   }
 
-  login (credentials) {
+  emailExist(email) {
+    // ${ConfigService.getApiUrl()}
     return http
-      .post(`${ConfigService.getApiUrl()}/auth/login`, credentials)
-      .then(response => {
-        if (response.data.authToken) {
-          localStorage.setItem('user', JSON.stringify(response.data))
-        }
-        return response
+      .get(`/user/exists?email=` + email)
+      .then((response) => {
+        return response.data;
       })
-      .catch(e => {
-        console.log(e)
-        return e.response
-      })
+      .catch((e) => {
+        console.log(e);
+        return e.response;
+      });
   }
 
-  logout () {
-    localStorage.removeItem('user')
+  login(user, password) {
+    console.log(import.meta.env);
+    return http
+      .post(`/auth/login`, {
+        user: user,
+        password: password,
+      })
+      .then((response) => {
+        if (response.data.authToken) {
+          localStorage.setItem("user", JSON.stringify(response.data));
+        }
+        return response;
+      })
+      .catch((e) => {
+        console.log(e);
+        return e.response;
+      });
+  }
+
+  logout() {
+    localStorage.removeItem("user");
   }
 }
 
-export default new AuthService()
+export default new AuthService();

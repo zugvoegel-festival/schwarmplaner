@@ -1,10 +1,8 @@
 <template>
-  <div>
-    Dashboard
-    <v-btn to="/helper">helper</v-btn>
-    <v-btn to="/settings">settings</v-btn>
-    <v-btn to="/shifts">shifts</v-btn>
-  </div>
+  <v-row class="pa-10">
+    <v-col> Platzhalter Nächsten Unbesetzten Schichten </v-col>
+    <v-col> Platzhalter Nächsten Schichten </v-col>
+  </v-row>
 </template>
 
 <script>

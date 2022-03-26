@@ -1,14 +1,14 @@
 <template>
   <v-app>
-    <home-app-bar v-on:showDrawer="showDrawer" />
-    <home-view :drawer="drawer" />
+    <home-app-bar :useDrawer="false" iconLink="/user" />
+    <home-view :useDrawer="false" />
     <home-footer />
   </v-app>
 </template>
 
 <script>
 export default {
-  name: "StartView",
+  name: "UserLayout",
   data: () => ({
     drawer: false,
     drawerPermanent: true,
@@ -21,7 +21,7 @@ export default {
   components: {
     HomeAppBar: () => import("./components/AppBar.vue"),
     HomeFooter: () => import("./components/Footer.vue"),
-    HomeView: () => import("./components/View.vue"),
+    HomeView: () => import("./components/BaseView.vue"),
   },
 };
 </script>

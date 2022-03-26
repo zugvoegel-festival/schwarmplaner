@@ -21,6 +21,10 @@
         v-if="cardType == 'register'"
         v-on:setCardType="setCardType"
       ></RegisterCard>
+      <SelectShiftsCard
+        v-if="cardType == 'shifts'"
+        v-on:setCardType="setCardType"
+      ></SelectShiftsCard>
     </v-card>
   </div>
 </template>
@@ -30,19 +34,26 @@ import EmailCard from "./EmailCard.vue";
 import AdminCard from "./AdminCard.vue";
 import UserCard from "./UserCard.vue";
 import RegisterCard from "./RegisterCard.vue";
+import SelectShiftsCard from "./SelectShiftsCard.vue";
 
 export default {
   name: "LoginView",
   metaInfo: { title: "Login" },
   data: () => ({
-    cardType: "register",
+    cardType: "email",
   }),
   methods: {
     setCardType(type) {
       this.cardType = type;
     },
   },
-  components: { EmailCard, AdminCard, UserCard, RegisterCard },
+  components: {
+    EmailCard,
+    AdminCard,
+    UserCard,
+    RegisterCard,
+    SelectShiftsCard,
+  },
 };
 </script>
 
