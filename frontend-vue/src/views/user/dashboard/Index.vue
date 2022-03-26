@@ -20,7 +20,7 @@
             <v-btn to="/trade">Schicht Tauschen</v-btn>
           </v-col>
           <v-col>
-            <v-btn to="/userShift">Mehr Schichten</v-btn>
+            <v-btn to="/shift">Mehr Schichten</v-btn>
           </v-col>
         </v-row>
       </v-col>
