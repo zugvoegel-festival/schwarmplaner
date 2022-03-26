@@ -1,27 +1,24 @@
 <template>
-  <v-app>
+  <div>
     <v-card-text>
-      <v-container class="py-0">
-        <v-row align="center" justify="start"> Wo möchtest du Helfen? </v-row>
-        <v-row align="center" justify="start">
-          <v-col
-            v-for="(selection, i) in selections"
-            :key="selection.text"
-            class="shrink"
+      <v-row align="center" justify="start"> Wo möchtest du Helfen? </v-row>
+      <v-row align="center" justify="start">
+        <v-col
+          v-for="(selection, i) in selections"
+          :key="selection.text"
+          class="shrink"
+        >
+          <v-chip
+            :disabled="loading"
+            close
+            @click:close="selected.splice(i, 1)"
           >
-            <v-chip
-              :disabled="loading"
-              close
-              @click:close="selected.splice(i, 1)"
-            >
-              <v-icon left v-text="selection.icon"></v-icon>
-              {{ selection.text }}
-            </v-chip>
-          </v-col>
-        </v-row>
-      </v-container>
-
-      <v-container class="py-0">
+            <v-icon left v-text="selection.icon"></v-icon>
+            {{ selection.text }}
+          </v-chip>
+        </v-col>
+      </v-row>
+      <v-row>
         <v-list>
           <template v-for="item in categories">
             <v-list-item
@@ -37,17 +34,16 @@
             </v-list-item>
           </template>
         </v-list>
-      </v-container>
+      </v-row>
+      <v-row align="center" justify="start"
+        >Wie lange möchtest du Helfen?
+      </v-row>
+      <v-row align="center" justify="start"
+        >2 Stunden für Freedrinks , 8 Stunden für ein kostenloses Ticket
+      </v-row>
 
-      <v-container class="py-0">
-        <v-row align="center" justify="start"
-          >Wie lange möchtest du Helfen?
-        </v-row>
-        <v-row align="center" justify="start"
-          >2 Stunden für Freedrinks , 8 Stunden für ein kostenloses Ticket
-        </v-row>
-
-        <v-row>
+      <v-row>
+        <v-app>
           <v-slider
             :label="sliderLabel"
             v-model="sliderShiftHours"
@@ -57,10 +53,11 @@
             ticks="always"
             tick-size="2"
           ></v-slider>
-        </v-row>
-        <v-row align="center" justify="start">{{ sliderHint }}</v-row>
-      </v-container>
+        </v-app>
+      </v-row>
+      <v-row align="center" justify="start">{{ sliderHint }}</v-row>
     </v-card-text>
+
     <v-card-actions>
       <v-btn @click="back" text>zurück</v-btn>
       <v-spacer />
@@ -68,7 +65,7 @@
         >Registrieren</v-btn
       >
     </v-card-actions>
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -77,9 +74,8 @@ export default {
   metaInfo: { title: "SelectShiftsCard" },
   data: () => ({
     sliderShiftHours: 2,
-    sliderHints: ["Wow, du bis super!", "famos", "weiter so!!!", "<3"],
+    sliderHints: ["Wow, du bist super!", "famos", "weiter so!!!", "<3"],
     sliderHint: "",
-
     shiftTypes: [
       {
         text: "Bar",
@@ -165,7 +161,7 @@ export default {
       // showerror message and do nothing
     },
     back() {
-      this.$emit("setCardType", "email");
+      this.$emit("setCardType", "register");
     },
   },
 };
