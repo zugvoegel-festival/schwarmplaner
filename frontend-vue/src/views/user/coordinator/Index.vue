@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row>
+    <v-row class="pa-10">
       <v-col>
         <v-btn to="/user"> Zurück</v-btn>
       </v-col>

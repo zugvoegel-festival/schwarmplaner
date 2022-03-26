@@ -1,9 +1,11 @@
 <template>
-  <div>
-    Settings <v-btn to="/helper">helper</v-btn>
-    <v-btn to="/settings">settings</v-btn>
-    <v-btn to="/shifts">shifts</v-btn>
-  </div>
+  <v-row class="pa-10">
+    <v-col>
+      <v-btn v-if="!$vuetify.breakpoint.mdAndUp" to="/admin"> Zurück</v-btn>
+    </v-col>
+
+    <v-col>Settings </v-col>
+  </v-row>
 </template>
 
 <script>
