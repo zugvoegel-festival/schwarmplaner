@@ -1,5 +1,3 @@
-
-
 <template>
   <div>
     <v-card-text>
@@ -11,7 +9,7 @@
     <v-card-actions>
       <v-btn @click="back">zurück</v-btn>
       <v-spacer />
-      <v-btn @click="next">Registrieren</v-btn>
+      <v-btn @click="next">Weiter</v-btn>
     </v-card-actions>
   </div>
 </template>
@@ -33,8 +31,9 @@ export default {
   methods: {
     next() {
       //success
-      //to Dashboard
-      this.$router.push("user");
+      //to next card
+      this.$emit("setCardType", "shifts");
+
       //fail
       // show error message and do nothing
     },
@@ -46,4 +45,3 @@ export default {
 </script>
 
 <style></style>
-

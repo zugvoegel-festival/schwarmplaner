@@ -12,7 +12,7 @@ const routes = [
   {
     path: "/admin",
 
-    component: () => import("../views/layouts/Admin"),
+    component: () => import("../views/layouts/AdminLayout.vue"),
     children: [
       {
         path: "/",
@@ -38,7 +38,7 @@ const routes = [
   },
   {
     path: "/user",
-    component: () => import("../views/layouts/User"),
+    component: () => import("../views/layouts/UserLayout.vue"),
     children: [
       {
         path: "/",
@@ -64,7 +64,7 @@ const routes = [
   },
   {
     path: "/locations",
-    component: () => import("../views/layouts/Locations"),
+    component: () => import("../views/layouts/LocationsLayout.vue"),
     children: [
       {
         path: "/rotator",

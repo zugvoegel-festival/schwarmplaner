@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "StartView",
+  name: "UserLayout",
   data: () => ({
     drawer: false,
     drawerPermanent: true,
@@ -19,9 +19,9 @@ export default {
     },
   },
   components: {
-    HomeAppBar: () => import("./components/AppBar.vue"),
+    HomeAppBar: () => import("./components/BaseAppBar.vue"),
     HomeFooter: () => import("./components/Footer.vue"),
-    HomeView: () => import("./components/View.vue"),
+    HomeView: () => import("./components/UserView.vue"),
   },
 };
 </script>
