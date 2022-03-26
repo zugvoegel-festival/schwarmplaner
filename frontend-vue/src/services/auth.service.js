@@ -34,7 +34,7 @@ class AuthService {
   emailExist(email) {
     // ${ConfigService.getApiUrl()}
     return http
-      .get(`/user?email=` + email)
+      .get(`/user/exists?email=` + email)
       .then((response) => {
         return response.data;
       })

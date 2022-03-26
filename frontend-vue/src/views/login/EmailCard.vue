@@ -44,16 +44,22 @@ export default {
         .emailExist(this.mail)
         .then((response) => {
           console.log(response);
+          if (response.data.user.found) {
+            // if admin -> show adminCard
+            if (response.data.user.role == "admin")
+              this.$emit("setCardType", "admin");
+
+            // if user -> show UserCard
+            if (response.data.user.role == "user")
+              this.$emit("setCardType", "user");
+          } else {
+            // if unregistered -> show RegisterCard
+            this.$emit("setCardType", "register");
+          }
         })
         .catch((e) => {
           this.$log.error(e);
-        })
-
-        // if admin -> show adminCard
-        // if user -> show UserCard
-        // if unregistered -> show RegisterCard
-
-        .this.$emit("setCardType", "admin");
+        });
     },
   },
 };

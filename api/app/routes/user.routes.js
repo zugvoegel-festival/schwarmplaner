@@ -7,7 +7,7 @@ module.exports = app => {
   router.get('/byCalendar', user.findByCalendarId);
 
   // Retrieve a single User with id
-  router.get('/exists', user.isUserNameTaken);
+  router.get('/exists', user.userExists);
   // Create a new User
   router.post('/', user.create);
 
