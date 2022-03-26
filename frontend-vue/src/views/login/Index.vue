@@ -40,7 +40,7 @@ export default {
   name: "LoginView",
   metaInfo: { title: "Login" },
   data: () => ({
-    cardType: "register",
+    cardType: "email",
   }),
   methods: {
     setCardType(type) {
