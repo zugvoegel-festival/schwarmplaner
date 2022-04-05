@@ -29,7 +29,7 @@ export default {
     password: "",
     rules: {
       required: (value) => !!value || "Notwendig",
-      correct: () => `The email and password you entered don't match`,
+      correct: () => `Email und Passwort stimmen nicht überein!`,
     },
   }),
 

@@ -3,7 +3,7 @@
     <v-card-text>
       <v-form v-model="validMail">
         <v-text-field
-          v-model="mail"
+          v-model="email"
           label="Email"
           :rules="emailRules"
           hide-details="auto"
@@ -19,36 +19,40 @@
 
 <script>
 import authService from "@/services/auth.service";
+
 export default {
   name: "EmailCard",
   metaInfo: { title: "EmailCard" },
+  props: { cardData: { email: "" } },
   data: () => ({
-    mail: "",
+    email: "",
     validMail: false,
     emailRules: [
-      (value) => !!value || "Required.",
-      (value) => (value || "").length <= 20 || "Max 20 characters",
+      (value) => !!value || "Notwendig",
+      (value) => (value || "").length <= 20 || "Max 20 Zeichen",
       (value) => {
         const pattern =
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return pattern.test(value) || "Invalid e-mail.";
+        return pattern.test(value) || "Ungültige E-mail";
       },
     ],
   }),
-
+  mounted() {
+    this.email = this.cardData.email;
+  },
   methods: {
     next() {
       // check if known user
-
+      let data = this.cardData;
+      data.email = this.email;
+      this.$emit("onDataChange", data);
       authService
         .emailExist(this.mail)
         .then((response) => {
-          console.log(response);
           if (response.data.user.found) {
             // if admin -> show adminCard
             if (response.data.user.role == "admin")
               this.$emit("setCardType", "admin");
-
             // if user -> show UserCard
             if (response.data.user.role == "user")
               this.$emit("setCardType", "user");

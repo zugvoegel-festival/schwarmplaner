@@ -98,6 +98,9 @@ export default {
     search: "",
     selected: [],
   }),
+  mounted() {
+    this.email = this.cardData.email;
+  },
 
   computed: {
     sliderLabel() {

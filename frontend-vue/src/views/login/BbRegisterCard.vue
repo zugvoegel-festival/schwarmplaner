@@ -36,6 +36,9 @@
 export default {
   name: "RegisterCard",
   metaInfo: { title: "RegisterCard" },
+  props: {
+    cardData: {},
+  },
   data: () => ({
     valid: false,
     surname: "",
@@ -45,19 +48,23 @@ export default {
     rulesSurname: [(value) => !!value || "Notwendig"],
     rulesEmail: [(value) => !!value || "Notwendig"],
     rulesLastname: [(value) => !!value || "Notwendig"],
-    rulesPhone: [
-      (value) => !!value || "Notwendig",
-      (value) => {
-        const pattern = /^[0-9]$/;
-        return pattern.test(value) || "Invalid e-mail.";
-      },
-    ],
+    rulesPhone: [(value) => !!value || "Notwendig"],
   }),
+  mounted() {
+    this.email = this.cardData.email;
+  },
 
   methods: {
     next() {
       //success
       //to next card
+      let data = this.cardData;
+
+      data.email = this.email;
+      data.surname = this.surname;
+      data.lastname = this.lastname;
+      data.phone = this.phone;
+      this.$emit("onDataChange", data);
       this.$emit("setCardType", "shifts");
       //fail
       // show error message and do nothing
