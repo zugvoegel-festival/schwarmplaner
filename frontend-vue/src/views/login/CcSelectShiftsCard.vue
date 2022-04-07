@@ -1,5 +1,6 @@
 <template>
-  <div>
+<v-app>
+
     <v-card-text>
       <v-row align="center" justify="start"> Wo möchtest du Helfen? </v-row>
       <v-row align="center" justify="start">
@@ -16,8 +17,7 @@
             <v-icon left v-text="selection.icon"></v-icon>
             {{ selection.text }}
           </v-chip>
-        </v-col>
-      </v-row>
+        </v-col>  </v-row>
       <v-row>
         <v-list>
           <template v-for="item in categories">
@@ -42,8 +42,8 @@
         >2 Stunden für Freedrinks , 8 Stunden für ein kostenloses Ticket
       </v-row>
 
+
       <v-row>
-        <v-app>
           <v-slider
             :label="sliderLabel"
             v-model="sliderShiftHours"
@@ -53,9 +53,10 @@
             ticks="always"
             tick-size="2"
           ></v-slider>
-        </v-app>
+
       </v-row>
       <v-row align="center" justify="start">{{ sliderHint }}</v-row>
+
     </v-card-text>
 
     <v-card-actions>
@@ -65,13 +66,20 @@
         >Registrieren</v-btn
       >
     </v-card-actions>
-  </div>
+
+    </v-app>
 </template>
 
 <script>
+
+import userService from "@/services/user.service";
+
 export default {
   name: "SelectShiftsCard",
   metaInfo: { title: "SelectShiftsCard" },
+    props: {
+    cardData: {},
+  },
   data: () => ({
     sliderShiftHours: 2,
     sliderHints: ["Wow, du bist super!", "famos", "weiter so!!!", "<3"],
@@ -98,10 +106,6 @@ export default {
     search: "",
     selected: [],
   }),
-  mounted() {
-    this.email = this.cardData.email;
-  },
-
   computed: {
     sliderLabel() {
       return this.sliderShiftHours + " Stunden";
@@ -151,6 +155,18 @@ export default {
       //success
       //to Dashboard
       this.loading = true;
+        let data = this.cardData;
+
+    userService.createUser(data).then((response) => {
+      console.log(response)
+          this.loading = false;
+
+        })
+        .catch((e) => {
+          this.loading = false;
+          this.$log.error(e);
+        });
+
 
       setTimeout(() => {
         this.search = "";

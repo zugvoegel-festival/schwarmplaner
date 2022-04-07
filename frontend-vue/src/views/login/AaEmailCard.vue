@@ -12,20 +12,23 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer />
-      <v-btn :disabled="!validMail" @click="next">Weiter</v-btn>
+      <v-btn :disabled="!validMail" @click="next" :loading="loading">Weiter </v-btn>
     </v-card-actions>
   </div>
 </template>
 
 <script>
-import authService from "@/services/auth.service";
+
+import userService from "@/services/user.service";
 
 export default {
   name: "EmailCard",
   metaInfo: { title: "EmailCard" },
   props: { cardData: { email: "" } },
+
   data: () => ({
     email: "",
+    loading: false,
     validMail: false,
     emailRules: [
       (value) => !!value || "Notwendig",
@@ -45,16 +48,18 @@ export default {
       // check if known user
       let data = this.cardData;
       data.email = this.email;
+      this.loading = true;
       this.$emit("onDataChange", data);
-      authService
-        .emailExist(this.mail)
+      userService.emailExist(this.email)
         .then((response) => {
-          if (response.data.user.found) {
+          let data = response.data.data;
+          this.loading = false;
+          if (data.user.found) {
             // if admin -> show adminCard
-            if (response.data.user.role == "admin")
+            if (data.user.role == "admin")
               this.$emit("setCardType", "admin");
             // if user -> show UserCard
-            if (response.data.user.role == "user")
+            if (data.user.role == "user")
               this.$emit("setCardType", "user");
           } else {
             // if unregistered -> show RegisterCard
@@ -62,6 +67,7 @@ export default {
           }
         })
         .catch((e) => {
+          this.loading = false;
           this.$log.error(e);
         });
     },

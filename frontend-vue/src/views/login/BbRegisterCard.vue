@@ -59,7 +59,6 @@ export default {
       //success
       //to next card
       let data = this.cardData;
-
       data.email = this.email;
       data.surname = this.surname;
       data.lastname = this.lastname;

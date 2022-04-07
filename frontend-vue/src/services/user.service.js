@@ -1,18 +1,26 @@
-import http from './http-common'
-import ConfigService from './config.service'
+import http from "./http-common";
+import ConfigService from "./config.service";
 
 class UserService {
-  createUser (data) {
-    return http.post(`${ConfigService.getApiUrl()}/user`, data)
+  emailExist(email) {
+    return http.get(`/user/exists?email=` + email);
   }
 
-  getCalendarUsers (calendarId) {
-    return http.get(`${ConfigService.getApiUrl()}/user/byCalendar?calendarId=${calendarId}`)
+  createUser(data) {
+    return http.post(`/user`, data);
   }
 
-  isUserNameTaken (calendarId, userName) {
-    return http.get(`${ConfigService.getApiUrl()}/user/exists?calendarId=${calendarId}&user=${userName}`)
+  getCalendarUsers(calendarId) {
+    return http.get(
+      `${ConfigService.getApiUrl()}/user/byCalendar?calendarId=${calendarId}`
+    );
+  }
+
+  isUserNameTaken(calendarId, userName) {
+    return http.get(
+      `${ConfigService.getApiUrl()}/user/exists?calendarId=${calendarId}&user=${userName}`
+    );
   }
 }
 
-export default new UserService()
+export default new UserService();
