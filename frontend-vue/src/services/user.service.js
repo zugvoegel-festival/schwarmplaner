@@ -1,5 +1,4 @@
 import http from "./http-common";
-import ConfigService from "./config.service";
 
 class UserService {
   emailExist(email) {
@@ -11,15 +10,11 @@ class UserService {
   }
 
   getCalendarUsers(calendarId) {
-    return http.get(
-      `${ConfigService.getApiUrl()}/user/byCalendar?calendarId=${calendarId}`
-    );
+    return http.get(`/user/byCalendar?calendarId=${calendarId}`);
   }
 
   isUserNameTaken(calendarId, userName) {
-    return http.get(
-      `${ConfigService.getApiUrl()}/user/exists?calendarId=${calendarId}&user=${userName}`
-    );
+    return http.get(`/user/exists?calendarId=${calendarId}&user=${userName}`);
   }
 }
 
