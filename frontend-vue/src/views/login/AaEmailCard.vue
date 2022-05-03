@@ -1,7 +1,12 @@
 <template>
-  <div>
+  <LoginCard
+    :showBack="false"
+    :disabledNext="!valid"
+    v-on:next="next"
+    :loadingNext="loading"
+  >
     <v-card-text>
-      <v-form v-model="validMail">
+      <v-form v-model="valid">
         <v-text-field
           v-model="email"
           label="Email"
@@ -10,26 +15,22 @@
         ></v-text-field>
       </v-form>
     </v-card-text>
-    <v-card-actions>
-      <v-spacer />
-      <v-btn :disabled="!validMail" @click="next" :loading="loading">Weiter </v-btn>
-    </v-card-actions>
-  </div>
+  </LoginCard>
 </template>
 
 <script>
-
 import userService from "@/services/user.service";
+import LoginCard from "@/components/custom/LoginCard.vue";
+import { types } from "@/helpers/types";
 
 export default {
   name: "EmailCard",
   metaInfo: { title: "EmailCard" },
   props: { cardData: { email: "" } },
-
   data: () => ({
     email: "",
     loading: false,
-    validMail: false,
+    valid: false,
     emailRules: [
       (value) => !!value || "Notwendig",
       (value) => (value || "").length <= 20 || "Max 20 Zeichen",
@@ -46,25 +47,31 @@ export default {
   methods: {
     next() {
       // check if known user
-      let data = this.cardData;
-      data.email = this.email;
+
       this.loading = true;
-      this.$emit("onDataChange", data);
-      userService.emailExist(this.email)
+
+      userService
+        .emailExist(this.email)
         .then((response) => {
-          let data = response.data.data;
+          let respData = response.data.data;
           this.loading = false;
-          if (data.user.found) {
+          let cardData = this.cardData;
+          cardData.email = this.email;
+          if (respData.user.found) {
             // if admin -> show adminCard
-            if (data.user.role == "admin")
-              this.$emit("setCardType", "admin");
+            cardData.id = respData.user.id;
+            if (respData.user.type == types.admin) {
+              this.$emit("setCardType", "password");
+            }
             // if user -> show UserCard
-            if (data.user.role == "user")
-              this.$emit("setCardType", "user");
+            if (respData.user.type == types.user) {
+              this.$router.push("user");
+            }
           } else {
             // if unregistered -> show RegisterCard
             this.$emit("setCardType", "register");
           }
+          this.$emit("onDataChange", cardData);
         })
         .catch((e) => {
           this.loading = false;
@@ -72,6 +79,7 @@ export default {
         });
     },
   },
+  components: { LoginCard },
 };
 </script>
 

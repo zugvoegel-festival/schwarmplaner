@@ -1,5 +1,10 @@
 <template>
-  <div>
+    <LoginCard
+    :showBack="false"
+    v-on:next="next"
+    :loadingNext="loading"
+    :textNext="Login"
+  >
     <v-card-text>
       <v-text-field
         v-model="password"
@@ -12,12 +17,8 @@
         @click:append="show1 = !show1"
       ></v-text-field>
     </v-card-text>
-    <v-card-actions>
-      <v-btn @click="back">zurück</v-btn>
-      <v-spacer />
-      <v-btn @click="next">Login</v-btn>
-    </v-card-actions>
-  </div>
+
+  </LoginCard>
 </template>
 
 <script>

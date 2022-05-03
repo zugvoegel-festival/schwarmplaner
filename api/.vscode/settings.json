@@ -18,5 +18,20 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "cSpell.words": []
+  "cSpell.words": [],
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "schwarm",
+      "database": "testdb",
+      "username": "root",
+      "password": "test"
+    }
+  ]
 }

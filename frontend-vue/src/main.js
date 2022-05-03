@@ -11,6 +11,8 @@ import store from "./stores";
 
 // eslint-disable-next-line no-unused-vars
 import base from "./plugins/base";
+// eslint-disable-next-line no-unused-vars
+import custom from "./plugins/custom";
 
 import "@mdi/font/css/materialdesignicons.css";
 import moment from "moment";

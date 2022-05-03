@@ -1,5 +1,12 @@
 <template>
-  <div>
+  <LoginCard
+    :disabledNext="!valid"
+    :showBack="true"
+    v-on:next="next"
+    v-on:back="back"
+    textNext="Registrieren"
+    :loadingNext="loading"
+  >
     <v-card-text>
       <v-form v-model="valid">
         <v-text-field
@@ -24,22 +31,24 @@
         ></v-text-field>
       </v-form>
     </v-card-text>
-    <v-card-actions>
-      <v-btn @click="back" text>zurück</v-btn>
-      <v-spacer />
-      <v-btn :disabled="!valid" @click="next">Weiter</v-btn>
-    </v-card-actions>
-  </div>
+  </LoginCard>
 </template>
 
 <script>
+import LoginCard from "@/components/custom/LoginCard.vue";
+import userService from "@/services/user.service";
+import { types } from "@/helpers/types";
+import { roles } from "@/helpers/roles";
+
 export default {
   name: "RegisterCard",
   metaInfo: { title: "RegisterCard" },
   props: {
     cardData: {},
   },
+  components: { LoginCard },
   data: () => ({
+    loading: false,
     valid: false,
     surname: "",
     lastname: "",
@@ -63,8 +72,22 @@ export default {
       data.surname = this.surname;
       data.lastname = this.lastname;
       data.phone = this.phone;
+      data.role = roles.guest;
+      data.type = types.user;
       this.$emit("onDataChange", data);
-      this.$emit("setCardType", "shifts");
+      this.loading = true;
+      userService
+        .createUser(data)
+        .then((response) => {
+          console.log(response);
+          this.loading = false;
+          this.$emit("setCardType", "shifts");
+        })
+        .catch((e) => {
+          this.loading = false;
+          this.$log.error(e);
+        });
+
       //fail
       // show error message and do nothing
     },
