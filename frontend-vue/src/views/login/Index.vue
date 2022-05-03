@@ -1,48 +1,35 @@
 <template>
   <div>
-    <v-card>
-      <v-card-title> Willkommen beim Schwarmplaner </v-card-title>
-      <v-card-subtitle>
-        <v-img width="250" src="favicon2.svg"></v-img>
-      </v-card-subtitle>
-      <EmailCard
-        :cardData="cardData"
-        v-if="cardType == 'email'"
-        v-on:setCardType="setCardType"
-        v-on:onDataChange="onDataChange"
-      ></EmailCard>
-      <AdminCard
-        :cardData="cardData"
-        v-if="cardType == 'admin'"
-        v-on:setCardType="setCardType"
-      ></AdminCard>
-      <UserCard
-        :cardData="cardData"
-        v-if="cardType == 'user'"
-        v-on:setCardType="setCardType"
-        v-on:onDataChange="onDataChange"
-      ></UserCard>
-      <RegisterCard
-        :cardData="cardData"
-        v-if="cardType == 'register'"
-        v-on:setCardType="setCardType"
-        v-on:onDataChange="onDataChange"
-      ></RegisterCard>
-      <SelectShiftsCard
-        :cardData="cardData"
-        v-if="cardType == 'shifts'"
-        v-on:setCardType="setCardType"
-        v-on:onDataChange="onDataChange"
-      ></SelectShiftsCard>
-    </v-card>
+    <EmailCard
+      :cardData="cardData"
+      v-if="cardType == 'email'"
+      v-on:setCardType="setCardType"
+      v-on:onDataChange="onDataChange"
+    ></EmailCard>
+    <PasswordCard
+      :cardData="cardData"
+      v-if="cardType == 'password'"
+      v-on:setCardType="setCardType"
+    ></PasswordCard>
+    <RegisterCard
+      :cardData="cardData"
+      v-if="cardType == 'register'"
+      v-on:setCardType="setCardType"
+      v-on:onDataChange="onDataChange"
+    ></RegisterCard>
+    <SelectShiftsCard
+      :cardData="cardData"
+      v-if="cardType == 'shifts'"
+      v-on:setCardType="setCardType"
+      v-on:onDataChange="onDataChange"
+    ></SelectShiftsCard>
   </div>
 </template>
 
 <script>
 import EmailCard from "./AaEmailCard.vue";
-import AdminCard from "./BbAdminCard.vue";
-import UserCard from "./BbUserCard.vue";
-import RegisterCard from "./BbRegisterCard.vue";
+import PasswordCard from "./BbPasswordCard.vue";
+import RegisterCard from "./BcRegisterCard.vue";
 import SelectShiftsCard from "./CcSelectShiftsCard.vue";
 
 export default {
@@ -63,8 +50,7 @@ export default {
   },
   components: {
     EmailCard,
-    AdminCard,
-    UserCard,
+    PasswordCard,
     RegisterCard,
     SelectShiftsCard,
   },

@@ -84,7 +84,7 @@
 <polygon fill="none" stroke="#000000" points="166,-264 166,-286 255,-286 255,-264 166,-264"/>
 <text text-anchor="start" x="171" y="-272" font-family="Times,serif" font-size="10.00" fill="#000000">role: STRING</text>
 <polygon fill="none" stroke="#000000" points="166,-242 166,-264 255,-264 255,-242 166,-242"/>
-<text text-anchor="start" x="171" y="-250" font-family="Times,serif" font-size="10.00" fill="#000000">crew: STRING</text>
+<text text-anchor="start" x="171" y="-250" font-family="Times,serif" font-size="10.00" fill="#000000">type: STRING</text>
 <polygon fill="none" stroke="#000000" points="166,-220 166,-242 255,-242 255,-220 166,-220"/>
 <text text-anchor="start" x="171" y="-228" font-family="Times,serif" font-size="10.00" fill="#000000">createdAt: DATE</text>
 <polygon fill="none" stroke="#000000" points="166,-198 166,-220 255,-220 255,-198 166,-198"/>
