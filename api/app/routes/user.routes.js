@@ -6,8 +6,11 @@ module.exports = app => {
   // Retrieve a all User with calendar id
   router.get('/byCalendar', user.findByCalendarId);
 
-  // Retrieve a single User with id
+  // check if a user exists
   router.get('/exists', user.userExists);
+
+  // Retrieve a single User with id
+  router.get('/valid', user.valid);
   // Create a new User
   router.post('/', user.create);
 
