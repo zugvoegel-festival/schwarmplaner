@@ -14,5 +14,8 @@ module.exports = app => {
   // Create a new User
   router.post('/', user.create);
 
+  // Get list of Users
+  router.get('/getusers', user.getUsers);
+
   app.use('/user', router);
 };

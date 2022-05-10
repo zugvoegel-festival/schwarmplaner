@@ -7,6 +7,7 @@ const bunyanMiddleware = require('bunyan-middleware');
 const { writeFileSync } = require('fs');
 const sequelizeErd = require('sequelize-erd');
 const { logger } = require('./helpers/logger');
+const { faker } = require('@faker-js/faker');
 
 const moduleLogger = logger.child({ module: 'server' });
 
@@ -37,12 +38,29 @@ app.use(express.urlencoded({ extended: true })); /* bodyParser.urlencoded() is d
 
 const db = require('./models');
 
-
 const { handleSuccess, handleNotFound } = require('./helpers/response');
 db.sequelize
   .sync({ alter: true })
   .then(data => {
     moduleLogger.debug('Database is reachable');
+
+    // Fill Fake-Database
+    var test = {
+      surname: faker.name.firstName(),
+      lastname: faker.name.lastName(),
+      password: faker.internet.password(),
+      email: faker.internet.email(),
+      phone: faker.phone.phoneNumber(),
+      role: 'guest',
+      type: 'user'
+    };
+    db.User.findOrCreate({ where: test })
+      .then(([user, created]) => {
+        moduleLogger.debug(user, created);
+      })
+      .catch(error => {
+        moduleLogger.debug(error);
+      });
   })
   .catch(err => {
     moduleLogger.error('Error syncing sequelize', err);
@@ -52,8 +70,6 @@ db.sequelize
 //  console.log("Drop and re-sync db.");
 // });
 
-
-
 /////////////////////////////////////////////////////////////////
 ///         Below here define routes for API               //////
 /////////////////////////////////////////////////////////////////
@@ -61,8 +77,6 @@ db.sequelize
 require('./routes/shift.routes')(app);
 require('./routes/location.routes')(app);
 require('./routes/user.routes')(app);
-
-
 
 // TODO:  only in dev env
 sequelizeErd({ source: db.sequelize }).then(res => {

@@ -10,6 +10,11 @@ const routes = [
     component: () => import("../views/login/Index"),
   },
   {
+    path: "/usertable",
+    name: "",
+    component: () => import("../views/debug/Index"),
+  },
+  {
     path: "/admin",
     component: () => import("../views/layouts/AdminLayout.vue"),
     children: [
