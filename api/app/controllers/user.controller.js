@@ -163,3 +163,21 @@ exports.valid = (req, res) => {
       moduleLogger.debug(error);
     });
 };
+
+// Create and Save a new User
+exports.getUsers = (req, res) => {
+  const validationResponse = handleValidationError(req, res);
+  if (validationResponse !== null) {
+    return validationResponse;
+  }
+
+  const users = User.findAll({ raw: true })
+    .then(data => {
+      moduleLogger.debug(data);
+
+      handleSuccess(res, 'found all Users', data);
+    })
+    .catch(error => {
+      moduleLogger.debug(error);
+    });
+};

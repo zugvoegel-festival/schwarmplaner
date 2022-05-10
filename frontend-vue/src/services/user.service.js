@@ -4,6 +4,11 @@ class UserService {
   emailExist(email) {
     return http.get(`/user/exists?email=` + email);
   }
+
+  getUsers() {
+    return http.get(`/user/getusers`);
+  }
+
   validSurname(id, surname) {
     return http.get(`/user/valid?id=` + id + "&surname=" + surname);
   }
