@@ -1,31 +1,19 @@
 <template>
-<div>
-  <p>
-    Hallo Welt
-  </p>
-</div>
-
-
+  <div>
+    <p>Hallo Welt</p>
+    <li v-for="item in tableData.data.data" v-bind:key="item.id">
+      {{ item.surname }}
+    </li>
+  </div>
 </template>
 
 <script>
-  export default {
-    name: 'LoginCard',
-    inheritAttrs: false,
-    props: {
-      showBack: {type: Boolean, default: false},
-      textBack: {type: String, default: "Zurück"},
-      loadingNext: {type: Boolean, default: false},
-      disabledNext: {type: Boolean, default: false},
-      textNext: {type: String, default: "Weiter"}
-    },
-  methods: {
-    next() {
-       this.$emit("next");
-    },
-       back() {
-       this.$emit("back");
-    }
+export default {
+  name: "LoginCard",
+  inheritAttrs: false,
+  props: {
+    tableData: { i: "" },
   },
-  }
+  methods: {},
+};
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     Debug View
-    <UserTable></UserTable>
+    <UserTable :tableData="localData"></UserTable>
   </div>
 </template>
 
@@ -10,11 +10,15 @@ import UserTable from "@/components/custom/UserTable.vue";
 import userService from "@/services/user.service";
 export default {
   components: { UserTable },
+  data: () => ({
+    localData: {},
+  }),
   mounted() {
     userService
       .getUsers()
       .then((response) => {
         this.$log.debug(response);
+        this.localData = response;
       })
       .catch((e) => {
         this.$log.error(e);
