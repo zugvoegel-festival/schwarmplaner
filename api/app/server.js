@@ -37,7 +37,6 @@ app.use(express.urlencoded({ extended: true })); /* bodyParser.urlencoded() is d
 
 const db = require('./models');
 
-
 const { handleSuccess, handleNotFound } = require('./helpers/response');
 db.sequelize
   .sync({ alter: true })
@@ -52,8 +51,6 @@ db.sequelize
 //  console.log("Drop and re-sync db.");
 // });
 
-
-
 /////////////////////////////////////////////////////////////////
 ///         Below here define routes for API               //////
 /////////////////////////////////////////////////////////////////
@@ -61,8 +58,6 @@ db.sequelize
 require('./routes/shift.routes')(app);
 require('./routes/location.routes')(app);
 require('./routes/user.routes')(app);
-
-
 
 // TODO:  only in dev env
 sequelizeErd({ source: db.sequelize }).then(res => {
