@@ -7,10 +7,12 @@ const bunyanMiddleware = require('bunyan-middleware');
 const { writeFileSync } = require('fs');
 const sequelizeErd = require('sequelize-erd');
 const { logger } = require('./helpers/logger');
-const { faker } = require('@faker-js/faker');
 
 const moduleLogger = logger.child({ module: 'server' });
 
+const {
+fillDB
+} = require('./helpers/util');
 const app = express();
 
 const port = process.env.SCHWARM_API_PORT || 3000;
@@ -44,23 +46,8 @@ db.sequelize
   .then(data => {
     moduleLogger.debug('Database is reachable');
 
-    // Fill Fake-Database
-    var test = {
-      surname: faker.name.firstName(),
-      lastname: faker.name.lastName(),
-      password: faker.internet.password(),
-      email: faker.internet.email(),
-      phone: faker.phone.phoneNumber(),
-      role: 'guest',
-      type: 'user'
-    };
-    db.User.findOrCreate({ where: test })
-      .then(([user, created]) => {
-        moduleLogger.debug(user, created);
-      })
-      .catch(error => {
-        moduleLogger.debug(error);
-      });
+    fillDB(db);
+
   })
   .catch(err => {
     moduleLogger.error('Error syncing sequelize', err);
