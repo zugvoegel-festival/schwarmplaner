@@ -1,5 +1,5 @@
-const dbConfig = require("../config/db.config.js");
-const Sequelize = require("sequelize");
+const dbConfig = require('../config/db.config.js');
+const Sequelize = require('sequelize');
 
 const { logger } = require('../helpers/logger');
 const moduleLogger = logger.child({ module: 'db' });
@@ -12,10 +12,9 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
     acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle,
-  },
+    idle: dbConfig.pool.idle
+  }
 });
-
 
 if (moduleLogger.debug()) {
   moduleLogger.debug('DBCONFIG', dbConfig);
@@ -30,42 +29,39 @@ if (moduleLogger.debug()) {
   moduleLogger.info('DBCONFIG', data);
 }
 
-
 /////////////////////////////////////////////////////////////////
 ///  Below here DB Motels are setup and relations are set  //////
 /////////////////////////////////////////////////////////////////
 
-
-const ShiftModel = require("./shift.model.js");
-const LocationModel = require("./location.model.js");
-const UserModel = require("./user.model.js");
-
+const ShiftModel = require('./shift.model.js');
+const LocationModel = require('./location.model.js');
+const UserModel = require('./user.model.js');
+const ShiftUserModel = require('./shiftuser.model.js');
 
 // Define models
 const Shift = ShiftModel(sequelize, Sequelize);
 const Location = LocationModel(sequelize, Sequelize);
 const User = UserModel(sequelize, Sequelize);
-
+const ShiftUser = ShiftUserModel(sequelize, Sequelize);
 //Define relations
-Location.hasMany(Shift, { as: "shift", foreignKey: "location_id" });
+Location.hasMany(Shift, { as: 'shift' });
+Shift.belongsTo(Location);
 
 User.belongsToMany(Shift, {
   as: 'shifts',
-  through: 'shift_user',
-  foreignKey: 'user_id',
-  otherKey: 'shift_id',
-  onDelete: 'CASCADE'
-})
+  through: ShiftUser
+});
 
-
-
-
-
+Shift.belongsToMany(User, {
+  as: 'users',
+  through: ShiftUser
+});
 
 module.exports = {
   sequelize,
   Sequelize,
   Shift,
   Location,
-  User,
+  ShiftUser,
+  User
 };

@@ -10,9 +10,7 @@ const { logger } = require('./helpers/logger');
 
 const moduleLogger = logger.child({ module: 'server' });
 
-const {
-fillDB
-} = require('./helpers/util');
+const { fillDB } = require('./helpers/util');
 const app = express();
 
 const port = process.env.SCHWARM_API_PORT || 3000;
@@ -42,12 +40,10 @@ const db = require('./models');
 
 const { handleSuccess, handleNotFound } = require('./helpers/response');
 db.sequelize
-  .sync({ alter: true })
+  .sync({ force: true })
   .then(data => {
     moduleLogger.debug('Database is reachable');
-
     fillDB(db);
-
   })
   .catch(err => {
     moduleLogger.error('Error syncing sequelize', err);
