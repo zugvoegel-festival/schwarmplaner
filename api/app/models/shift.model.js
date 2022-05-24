@@ -1,16 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
-  const Shift = sequelize.define("shift", {
+  const Shift = sequelize.define('shift', {
     start: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
+      type: DataTypes.DATE,
+      allowNull: false
     },
     end: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
+      type: DataTypes.DATE,
+      allowNull: false
     },
     type: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     }
   });
 
