@@ -2,19 +2,20 @@ const db = require('../models');
 const { logger } = require('./logger');
 const moduleLogger = logger.child({ module: 'shifthelper' });
 const moment = require('moment');
-exports.createShift = (locationName, startMoment, endMoment, type) => {
+exports.createShift = (jobName, startMoment, endMoment, type) => {
   var newShift = {
     start: startMoment.format('YYYY-MM-DD HH:mm:ss'),
     end: endMoment.format('YYYY-MM-DD HH:mm:ss'),
     type: type
   };
 
-  db.Location.findOrCreate({ where: { name: locationName } })
-    .then(location => {
+  db.job
+    .findOrCreate({ where: { name: jobName } })
+    .then(job => {
       db.Shift.create(newShift)
         .then(shift => {
           shift
-            .setLocation(location[0])
+            .setjob(job[0])
             .then(data => {
               moduleLogger.debug('created shift ' + shift.id);
             })
@@ -31,7 +32,7 @@ exports.createShift = (locationName, startMoment, endMoment, type) => {
       moduleLogger.debug(error);
     });
 };
-exports.createShifts = (locationName, startMoment, day, type, amount) => {
+exports.createShifts = (jobName, startMoment, day, type, amount) => {
   let start = startMoment.day(day);
   let duration;
   if (type === 'short') {
@@ -50,7 +51,7 @@ exports.createShifts = (locationName, startMoment, day, type, amount) => {
   for (let i = 0; i < amount; i++) {
     let end = moment(start);
     end.add(duration);
-    this.createShift(locationName, start, end, type);
+    this.createShift(jobName, start, end, type);
     start = end;
   }
 };

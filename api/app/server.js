@@ -59,7 +59,7 @@ db.sequelize
 /////////////////////////////////////////////////////////////////
 
 require('./routes/shift.routes')(app);
-require('./routes/location.routes')(app);
+require('./routes/job.routes')(app);
 require('./routes/user.routes')(app);
 
 // TODO:  only in dev env

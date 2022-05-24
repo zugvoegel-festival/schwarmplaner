@@ -12,35 +12,35 @@
 <!-- shift -->
 <g id="node1" class="node">
 <title>shift</title>
-<polygon fill="#add8e6" stroke="transparent" points="287.5,-198 287.5,-220 385.5,-220 385.5,-198 287.5,-198"/>
-<polygon fill="none" stroke="#000000" points="287.5,-198 287.5,-220 385.5,-220 385.5,-198 287.5,-198"/>
-<text text-anchor="start" x="327.612" y="-207" font-family="Times,serif" font-weight="bold" font-size="10.00" fill="#000000">shift</text>
-<polygon fill="none" stroke="#000000" points="287.5,-176 287.5,-198 385.5,-198 385.5,-176 287.5,-176"/>
-<text text-anchor="start" x="292.5" y="-185" font-family="Times,serif" text-decoration="underline" font-size="10.00" fill="#000000">id</text>
-<text text-anchor="start" x="300.279" y="-185" font-family="Times,serif" font-size="10.00" fill="#000000">: NUMBER</text>
-<polygon fill="none" stroke="#000000" points="287.5,-154 287.5,-176 385.5,-176 385.5,-154 287.5,-154"/>
-<text text-anchor="start" x="292.5" y="-162" font-family="Times,serif" font-size="10.00" fill="#000000">start: DATE</text>
-<polygon fill="none" stroke="#000000" points="287.5,-132 287.5,-154 385.5,-154 385.5,-132 287.5,-132"/>
-<text text-anchor="start" x="292.5" y="-140" font-family="Times,serif" font-size="10.00" fill="#000000">end: DATE</text>
-<polygon fill="none" stroke="#000000" points="287.5,-110 287.5,-132 385.5,-132 385.5,-110 287.5,-110"/>
-<text text-anchor="start" x="292.5" y="-118" font-family="Times,serif" font-size="10.00" fill="#000000">type: STRING</text>
-<polygon fill="none" stroke="#000000" points="287.5,-88 287.5,-110 385.5,-110 385.5,-88 287.5,-88"/>
-<text text-anchor="start" x="292.5" y="-96" font-family="Times,serif" font-size="10.00" fill="#000000">createdAt: DATE</text>
-<polygon fill="none" stroke="#000000" points="287.5,-66 287.5,-88 385.5,-88 385.5,-66 287.5,-66"/>
-<text text-anchor="start" x="292.5" y="-74" font-family="Times,serif" font-size="10.00" fill="#000000">updatedAt: DATE</text>
-<polygon fill="none" stroke="#000000" points="287.5,-44 287.5,-66 385.5,-66 385.5,-44 287.5,-44"/>
-<text text-anchor="start" x="292.2015" y="-53" font-family="Times,serif" font-style="italic" text-decoration="underline" font-size="10.00" fill="#000000">locationId</text>
-<text text-anchor="start" x="332.7455" y="-53" font-family="Times,serif" font-size="10.00" fill="#000000">: NUMBER</text>
-<polygon fill="none" stroke="#000000" points="287.5,-22 287.5,-44 385.5,-44 385.5,-22 287.5,-22"/>
-<text text-anchor="start" x="292.5" y="-31" font-family="Times,serif" font-style="italic" text-decoration="underline" font-size="10.00" fill="#000000">userId</text>
-<text text-anchor="start" x="317.486" y="-31" font-family="Times,serif" font-size="10.00" fill="#000000">: NUMBER</text>
+<polygon fill="#add8e6" stroke="transparent" points="295.5,-198 295.5,-220 378.5,-220 378.5,-198 295.5,-198"/>
+<polygon fill="none" stroke="#000000" points="295.5,-198 295.5,-220 378.5,-220 378.5,-198 295.5,-198"/>
+<text text-anchor="start" x="328.112" y="-207" font-family="Times,serif" font-weight="bold" font-size="10.00" fill="#000000">shift</text>
+<polygon fill="none" stroke="#000000" points="295.5,-176 295.5,-198 378.5,-198 378.5,-176 295.5,-176"/>
+<text text-anchor="start" x="300.5" y="-185" font-family="Times,serif" text-decoration="underline" font-size="10.00" fill="#000000">id</text>
+<text text-anchor="start" x="308.279" y="-185" font-family="Times,serif" font-size="10.00" fill="#000000">: NUMBER</text>
+<polygon fill="none" stroke="#000000" points="295.5,-154 295.5,-176 378.5,-176 378.5,-154 295.5,-154"/>
+<text text-anchor="start" x="300.5" y="-162" font-family="Times,serif" font-size="10.00" fill="#000000">start: DATE</text>
+<polygon fill="none" stroke="#000000" points="295.5,-132 295.5,-154 378.5,-154 378.5,-132 295.5,-132"/>
+<text text-anchor="start" x="300.5" y="-140" font-family="Times,serif" font-size="10.00" fill="#000000">end: DATE</text>
+<polygon fill="none" stroke="#000000" points="295.5,-110 295.5,-132 378.5,-132 378.5,-110 295.5,-110"/>
+<text text-anchor="start" x="300.5" y="-118" font-family="Times,serif" font-size="10.00" fill="#000000">type: STRING</text>
+<polygon fill="none" stroke="#000000" points="295.5,-88 295.5,-110 378.5,-110 378.5,-88 295.5,-88"/>
+<text text-anchor="start" x="300.5" y="-96" font-family="Times,serif" font-size="10.00" fill="#000000">createdAt: DATE</text>
+<polygon fill="none" stroke="#000000" points="295.5,-66 295.5,-88 378.5,-88 378.5,-66 295.5,-66"/>
+<text text-anchor="start" x="300.205" y="-74" font-family="Times,serif" font-size="10.00" fill="#000000">updatedAt: DATE</text>
+<polygon fill="none" stroke="#000000" points="295.5,-44 295.5,-66 378.5,-66 378.5,-44 295.5,-44"/>
+<text text-anchor="start" x="300.5" y="-53" font-family="Times,serif" font-style="italic" text-decoration="underline" font-size="10.00" fill="#000000">jobId</text>
+<text text-anchor="start" x="321.608" y="-53" font-family="Times,serif" font-size="10.00" fill="#000000">: NUMBER</text>
+<polygon fill="none" stroke="#000000" points="295.5,-22 295.5,-44 378.5,-44 378.5,-22 295.5,-22"/>
+<text text-anchor="start" x="300.4805" y="-31" font-family="Times,serif" font-style="italic" text-decoration="underline" font-size="10.00" fill="#000000">userId</text>
+<text text-anchor="start" x="325.4665" y="-31" font-family="Times,serif" font-size="10.00" fill="#000000">: NUMBER</text>
 </g>
-<!-- location -->
+<!-- job -->
 <g id="node2" class="node">
-<title>location</title>
+<title>job</title>
 <polygon fill="#add8e6" stroke="transparent" points="587.5,-165 587.5,-187 670.5,-187 670.5,-165 587.5,-165"/>
 <polygon fill="none" stroke="#000000" points="587.5,-165 587.5,-187 670.5,-187 670.5,-165 587.5,-165"/>
-<text text-anchor="start" x="612.8925" y="-174" font-family="Times,serif" font-weight="bold" font-size="10.00" fill="#000000">location</text>
+<text text-anchor="start" x="622.6105" y="-174" font-family="Times,serif" font-weight="bold" font-size="10.00" fill="#000000">job</text>
 <polygon fill="none" stroke="#000000" points="587.5,-143 587.5,-165 670.5,-165 670.5,-143 587.5,-143"/>
 <text text-anchor="start" x="592.5" y="-152" font-family="Times,serif" text-decoration="underline" font-size="10.00" fill="#000000">id</text>
 <text text-anchor="start" x="600.279" y="-152" font-family="Times,serif" font-size="10.00" fill="#000000">: NUMBER</text>
@@ -53,11 +53,11 @@
 <polygon fill="none" stroke="#000000" points="587.5,-55 587.5,-77 670.5,-77 670.5,-55 587.5,-55"/>
 <text text-anchor="start" x="592.205" y="-63" font-family="Times,serif" font-size="10.00" fill="#000000">updatedAt: DATE</text>
 </g>
-<!-- shift&#45;&gt;location -->
+<!-- shift&#45;&gt;job -->
 <g id="edge1" class="edge">
-<title>shift&#45;&gt;location</title>
-<path fill="none" stroke="#000000" stroke-width=".75" d="M391.7789,-121C448.4875,-121 535.4439,-121 586.6775,-121"/>
-<polygon fill="#000000" stroke="#000000" stroke-width=".75" points="391.7036,-121.0001 385.7037,-118.3 388.7036,-121 385.7036,-121 385.7036,-121 385.7036,-121 388.7036,-121 385.7036,-123.7 391.7036,-121.0001 391.7036,-121.0001"/>
+<title>shift&#45;&gt;job</title>
+<path fill="none" stroke="#000000" stroke-width=".75" d="M384.3665,-121C440.6361,-121 533.1169,-121 586.6441,-121"/>
+<polygon fill="#000000" stroke="#000000" stroke-width=".75" points="384.0264,-121.0001 378.0264,-118.3 381.0264,-121 378.0264,-121 378.0264,-121 378.0264,-121 381.0264,-121 378.0263,-123.7 384.0264,-121.0001 384.0264,-121.0001"/>
 </g>
 <!-- user -->
 <g id="node3" class="node">
@@ -90,8 +90,8 @@
 <!-- shift&#45;&gt;user -->
 <g id="edge2" class="edge">
 <title>shift&#45;&gt;user</title>
-<path fill="none" stroke="#000000" stroke-width=".75" d="M280.9897,-121C225.2939,-121 140.5918,-121 89.1111,-121"/>
-<polygon fill="#000000" stroke="#000000" stroke-width=".75" points="281.2964,-121.0001 287.2964,-123.7 284.2964,-121 287.2964,-121 287.2964,-121 287.2964,-121 284.2964,-121 287.2963,-118.3 281.2964,-121.0001 281.2964,-121.0001"/>
+<path fill="none" stroke="#000000" stroke-width=".75" d="M288.7443,-121C233.4807,-121 143.1821,-121 89.2348,-121"/>
+<polygon fill="#000000" stroke="#000000" stroke-width=".75" points="288.9736,-121.0001 294.9737,-123.7 291.9736,-121 294.9736,-121 294.9736,-121 294.9736,-121 291.9736,-121 294.9736,-118.3 288.9736,-121.0001 288.9736,-121.0001"/>
 </g>
 </g>
 </svg>

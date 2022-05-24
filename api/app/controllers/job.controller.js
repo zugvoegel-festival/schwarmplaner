@@ -1,8 +1,8 @@
 const db = require('../models');
 
-const Location = db.Location;
+const job = db.job;
 const { logger } = require('../helpers/logger');
-const moduleLogger = logger.child({ module: 'location controller' });
+const moduleLogger = logger.child({ module: 'job controller' });
 
 const { handleValidationError, handleInternalError, handleNotFound, handleSuccess } = require('../helpers/response');
 // Create and Save a new Calendar
@@ -19,13 +19,14 @@ exports.findAll = (req, res) => {
     return validationResponse;
   }
 
-  Location.findAll({
-    where: req.query,
-    raw: true
-  })
+  job
+    .findAll({
+      where: req.query,
+      raw: true
+    })
     .then(data => {
-      moduleLogger.debug('found  Location ');
-      handleSuccess(res, 'found Location', data);
+      moduleLogger.debug('found  job ');
+      handleSuccess(res, 'found job', data);
     })
     .catch(error => {
       moduleLogger.error(error);

@@ -1,6 +1,6 @@
 const { createShift } = require('../helpers/shift.helper');
 const { createUser } = require('../helpers/user.helper');
-const { createLocation } = require('../helpers/location.helper');
+const { createjob } = require('../helpers/job.helper');
 const fs = require('fs');
 const parse = require('csv-parser');
 const { logger } = require('./logger');
@@ -16,10 +16,10 @@ async function fillDB() {
 
   moduleLogger.debug('Filling database with test data');
 
-  fs.createReadStream('app/locations.csv')
+  fs.createReadStream('app/jobs.csv')
     .pipe(parse({ delimiter: ',' }))
     .on('data', function (csvrow) {
-      createLocation(csvrow.Ort, faker.datatype.uuid());
+      createjob(csvrow.Ort, faker.datatype.uuid());
     });
 
   fs.createReadStream('app/shifts.csv')

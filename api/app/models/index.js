@@ -34,17 +34,17 @@ if (moduleLogger.debug()) {
 /////////////////////////////////////////////////////////////////
 
 const ShiftModel = require('./shift.model.js');
-const LocationModel = require('./location.model.js');
+const jobModel = require('./job.model.js');
 const UserModel = require('./user.model.js');
 
 // Define models
 const Shift = ShiftModel(sequelize, Sequelize);
-const Location = LocationModel(sequelize, Sequelize);
+const job = jobModel(sequelize, Sequelize);
 const User = UserModel(sequelize, Sequelize);
 
 //Define relations
-Location.hasMany(Shift, { as: 'shifts' });
-Shift.belongsTo(Location);
+job.hasMany(Shift, { as: 'shifts' });
+Shift.belongsTo(job);
 
 User.hasMany(Shift, { as: 'shifts' });
 Shift.belongsTo(User);
@@ -53,6 +53,6 @@ module.exports = {
   sequelize,
   Sequelize,
   Shift,
-  Location,
+  job,
   User
 };
