@@ -40,7 +40,7 @@ const db = require('./models');
 
 const { handleSuccess, handleNotFound } = require('./helpers/response');
 db.sequelize
-  .sync({ force: true })
+  .sync({ force: process.env.NODE_ENV === 'development' })
   .then(data => {
     moduleLogger.debug('Database is reachable');
     fillDB(db);
