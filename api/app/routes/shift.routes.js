@@ -14,5 +14,5 @@ module.exports = app => {
   // Delete a Appointment with id
   router.delete('/:id', shift.delete);
 
-  app.use('/shift', router);
+  app.use('/shifts', router);
 };

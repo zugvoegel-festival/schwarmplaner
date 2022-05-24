@@ -44,7 +44,7 @@ db.sequelize
   .sync({ force: fillDBWithTestData })
   .then(data => {
     moduleLogger.debug('Database is reachable');
-    if (fillDBWithTestData) fillDB(db);
+    if (fillDBWithTestData) fillDB();
   })
   .catch(err => {
     moduleLogger.error('Error syncing sequelize', err);

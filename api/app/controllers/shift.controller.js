@@ -1,6 +1,8 @@
 const { handleSuccess, handleInternalError, handleNotFound, handleValidationError } = require('../helpers/response');
 const db = require('../models');
 const Shift = db.Shift;
+const { logger } = require('../helpers/logger');
+const moduleLogger = logger.child({ module: 'shift controller' });
 // Create and Save a new Appointment
 exports.create = (req, res) => {
   const validationResponse = handleValidationError(req, res);
@@ -18,44 +20,16 @@ exports.findAll = (req, res) => {
     return validationResponse;
   }
 
-  let reqSurname = req.query.surname;
-
-  if (!reqSurname) {
-    handleInternalError(res, 'missing parameter');
-    moduleLogger.error('no surname in query paramter');
-    return;
-  }
-  let reqId = req.query.id;
-
-  if (!reqId) {
-    handleInternalError(res, 'missing parameter');
-    moduleLogger.error('no id in query paramter');
-    return;
-  }
   Shift.findAll({
-    where: {
-      surname: reqSurname,
-      id: reqId
-    }
+    where: req.query,
+    raw: true
   })
     .then(data => {
-      moduleLogger.debug(data);
-      if (data.length == 0) {
-        handleSuccess(res, 'no valid surname', {
-          user: {
-            valid: false
-          }
-        });
-      } else {
-        handleSuccess(res, 'valid surname', {
-          user: {
-            valid: true
-          }
-        });
-      }
+      moduleLogger.debug('found  shifts ');
+      handleSuccess(res, 'found shifts', data);
     })
     .catch(error => {
-      moduleLogger.debug(error);
+      moduleLogger.error(error);
     });
 };
 

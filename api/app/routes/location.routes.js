@@ -5,8 +5,7 @@ module.exports = app => {
 
   router.post('/new', location.create);
 
+  router.get('', location.findAll);
 
-  router.get('/:slug', location.findBySlug);
-
-  app.use('/location', router);
+  app.use('/locations', router);
 };

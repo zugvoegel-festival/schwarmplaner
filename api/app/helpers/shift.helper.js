@@ -11,20 +11,16 @@ exports.createShift = (locationName, startMoment, endMoment, type) => {
 
   db.Location.findOrCreate({ where: { name: locationName } })
     .then(location => {
-      db.Shift.findOrCreate({ where: newShift })
-        .then(([shift, created]) => {
-          if (created) {
-            shift
-              .setLocation(location[0])
-              .then(data => {
-                moduleLogger.debug('created shift ' + shift.id);
-              })
-              .catch(error => {
-                moduleLogger.debug(error);
-              });
-          } else {
-            moduleLogger.debug('shift already created ' + shift.id);
-          }
+      db.Shift.create(newShift)
+        .then(shift => {
+          shift
+            .setLocation(location[0])
+            .then(data => {
+              moduleLogger.debug('created shift ' + shift.id);
+            })
+            .catch(error => {
+              moduleLogger.debug(error);
+            });
         })
 
         .catch(error => {
@@ -52,8 +48,25 @@ exports.createShifts = (locationName, startMoment, day, type, amount) => {
   }
 
   for (let i = 0; i < amount; i++) {
-    let end = start.add(duration);
+    let end = moment(start);
+    end.add(duration);
     this.createShift(locationName, start, end, type);
     start = end;
   }
+};
+exports.addUserToShift = (shiftId, userId) => {
+  db.Shift.findByPk(shiftId)
+    .then(shift => {
+      shift
+        .addUser(userId)
+        .then(data => {
+          moduleLogger.debug('attached shift ' + shiftId + ' to  user ' + userId);
+        })
+        .catch(error => {
+          moduleLogger.debug(error);
+        });
+    })
+    .catch(error => {
+      moduleLogger.debug(error);
+    });
 };
