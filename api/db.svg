@@ -19,9 +19,9 @@
 <text text-anchor="start" x="462.5" y="-174" font-family="Times,serif" text-decoration="underline" font-size="10.00" fill="#000000">id</text>
 <text text-anchor="start" x="470.279" y="-174" font-family="Times,serif" font-size="10.00" fill="#000000">: NUMBER</text>
 <polygon fill="none" stroke="#000000" points="457.5,-143 457.5,-165 555.5,-165 555.5,-143 457.5,-143"/>
-<text text-anchor="start" x="462.5" y="-151" font-family="Times,serif" font-size="10.00" fill="#000000">start: NUMBER</text>
+<text text-anchor="start" x="462.5" y="-151" font-family="Times,serif" font-size="10.00" fill="#000000">start: DATE</text>
 <polygon fill="none" stroke="#000000" points="457.5,-121 457.5,-143 555.5,-143 555.5,-121 457.5,-121"/>
-<text text-anchor="start" x="462.5" y="-129" font-family="Times,serif" font-size="10.00" fill="#000000">end: NUMBER</text>
+<text text-anchor="start" x="462.5" y="-129" font-family="Times,serif" font-size="10.00" fill="#000000">end: DATE</text>
 <polygon fill="none" stroke="#000000" points="457.5,-99 457.5,-121 555.5,-121 555.5,-99 457.5,-99"/>
 <text text-anchor="start" x="462.5" y="-107" font-family="Times,serif" font-size="10.00" fill="#000000">type: STRING</text>
 <polygon fill="none" stroke="#000000" points="457.5,-77 457.5,-99 555.5,-99 555.5,-77 457.5,-77"/>
