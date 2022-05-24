@@ -39,11 +39,12 @@ app.use(express.urlencoded({ extended: true })); /* bodyParser.urlencoded() is d
 const db = require('./models');
 
 const { handleSuccess, handleNotFound } = require('./helpers/response');
+let fillDBWithTestData = false;
 db.sequelize
-  .sync({ force: process.env.NODE_ENV === 'development' })
+  .sync({ force: fillDBWithTestData })
   .then(data => {
     moduleLogger.debug('Database is reachable');
-    fillDB(db);
+    if (fillDBWithTestData) fillDB(db);
   })
   .catch(err => {
     moduleLogger.error('Error syncing sequelize', err);
