@@ -113,21 +113,10 @@ async function fillDB(db) {
   addLocation(db, 'bar4', '809770c6-969e-4f0f-aa0e-ec58ef7672f2');
   addLocation(db, 'bar5', 'c4c23af8-4d48-4ffd-8ed3-791f2192bd73');
 
-  addShift(db, 'bar1', moment.now(), moment.now(), 'normal');
-  addShift(db, 'bar1', moment.now(), moment.now(), 'normal');
-  addShift(db, 'bar1', moment.now(), moment.now(), 'normal');
-  addShift(db, 'bar1', moment.now(), moment.now(), 'normal');
-  addShift(db, 'bar1', moment.now(), moment.now(), 'normal');
-  addShift(db, 'bar1', moment.now(), moment.now(), 'normal');
-  addShift(db, 'bar1', moment.now(), moment.now(), 'normal');
-  addShift(db, 'bar1', moment.now(), moment.now(), 'normal');
-  addShift(db, 'bar1', moment.now(), moment.now(), 'normal');
-  addShift(db, 'bar1', moment.now(), moment.now(), 'normal');
-  addShift(db, 'bar1', moment.now(), moment.now(), 'normal');
-  addShift(db, 'bar1', moment.now(), moment.now(), 'normal');
-  addShift(db, 'bar1', moment.now(), moment.now(), 'normal');
-  addShift(db, 'bar1', moment.now(), moment.now(), 'normal');
-
+  let current = moment(moment.now()).format('YYYY-MM-DD HH:mm:ss');
+  for (let i = 0; i < 50; i++) {
+    addShift(db, 'bar1', current, current, 'normal');
+  }
   // wait for shifts are created
   let sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
   await sleep(5000);
