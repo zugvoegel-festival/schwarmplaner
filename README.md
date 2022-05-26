@@ -19,6 +19,10 @@ https://www.figma.com/proto/Ht9BKR6toCg3TKde2W3XTS/ZV-Schwarmplaner?node-id=0%3A
 
 https://www.bezkoder.com/vue-js-node-js-express-mysql-crud-example/
 
+https://www.bezkoder.com/sequelize-associate-many-to-many/
+
+https://www.bezkoder.com/sequelize-associate-one-to-many/
+
 https://github.com/bezkoder/vue-js-node-js-express-mysql
 
 Boilerplate based on

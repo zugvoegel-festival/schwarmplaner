@@ -10,6 +10,7 @@ const { logger } = require('./helpers/logger');
 
 const moduleLogger = logger.child({ module: 'server' });
 
+const { fillDB } = require('./helpers/util');
 const app = express();
 
 const port = process.env.SCHWARM_API_PORT || 3000;
@@ -37,12 +38,13 @@ app.use(express.urlencoded({ extended: true })); /* bodyParser.urlencoded() is d
 
 const db = require('./models');
 
-
 const { handleSuccess, handleNotFound } = require('./helpers/response');
+let fillDBWithTestData = false;
 db.sequelize
-  .sync({ alter: true })
+  .sync({ force: fillDBWithTestData })
   .then(data => {
     moduleLogger.debug('Database is reachable');
+    if (fillDBWithTestData) fillDB();
   })
   .catch(err => {
     moduleLogger.error('Error syncing sequelize', err);
@@ -52,17 +54,13 @@ db.sequelize
 //  console.log("Drop and re-sync db.");
 // });
 
-
-
 /////////////////////////////////////////////////////////////////
 ///         Below here define routes for API               //////
 /////////////////////////////////////////////////////////////////
 
 require('./routes/shift.routes')(app);
-require('./routes/location.routes')(app);
+require('./routes/job.routes')(app);
 require('./routes/user.routes')(app);
-
-
 
 // TODO:  only in dev env
 sequelizeErd({ source: db.sequelize }).then(res => {
