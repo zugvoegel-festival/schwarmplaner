@@ -6,16 +6,17 @@ Vue.use(Router);
 const routes = [
   {
     path: "/",
-    name: "",
+    name: "base",
     component: () => import("../views/login/Index"),
   },
   {
-    path: "/usertable",
-    name: "",
+    path: "/debug",
+    name: "debug",
     component: () => import("../views/debug/Index"),
   },
   {
     path: "/admin",
+    name: "admin",
     component: () => import("../views/layouts/AdminLayout.vue"),
     children: [
       {
@@ -42,6 +43,7 @@ const routes = [
   },
   {
     path: "/user",
+    name: "user",
     component: () => import("../views/layouts/UserLayout.vue"),
     children: [
       {
@@ -68,6 +70,7 @@ const routes = [
   },
   {
     path: "/locations",
+    name: "locations",
     component: () => import("../views/layouts/LocationsLayout.vue"),
     children: [
       {
@@ -81,6 +84,11 @@ const routes = [
         component: () => import("../views/locations/static/Index"),
       },
     ],
+  },
+  {
+    path: "*",
+    name: "",
+    component: () => import("../views/pageNotFound/Index"),
   },
 ];
 
