@@ -8,8 +8,7 @@ exports.createjob = (name, slug) => {
     slug: slug
   };
 
-  db.job
-    .findOrCreate({ where: newjob })
+  db.Job.findOrCreate({ where: newjob })
     .then(([job, created]) => {
       moduleLogger.debug('job ' + job.name + ' created');
     })

@@ -9,27 +9,26 @@ exports.createShift = (jobName, startMoment, endMoment, type) => {
     type: type
   };
 
-  db.job
-    .findOrCreate({ where: { name: jobName } })
-    .then(job => {
+  db.Job.findOrCreate({ where: { name: jobName } })
+    .then(([job, cerated]) => {
       db.Shift.create(newShift)
         .then(shift => {
           shift
-            .setjob(job[0])
+            .setJob(job)
             .then(data => {
               moduleLogger.debug('created shift ' + shift.id);
             })
             .catch(error => {
-              moduleLogger.debug(error);
+              moduleLogger.error(error);
             });
         })
 
         .catch(error => {
-          moduleLogger.debug(error);
+          moduleLogger.error(error);
         });
     })
     .catch(error => {
-      moduleLogger.debug(error);
+      moduleLogger.error(error);
     });
 };
 exports.createShifts = (jobName, startMoment, day, type, amount) => {

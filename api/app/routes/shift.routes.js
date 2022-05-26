@@ -3,10 +3,12 @@ module.exports = app => {
 
   var router = require('express').Router();
 
+  router.get('', shift.findAll);
+
+  router.get('/dates', shift.getDates);
+
   // Create a new Appointment
   router.post('/', shift.create);
-
-  router.get('', shift.findAll);
 
   // Update a Appointment with id
   router.put('/:id', shift.update);

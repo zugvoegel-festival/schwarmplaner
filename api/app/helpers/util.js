@@ -34,12 +34,9 @@ async function fillDB() {
       if (csvrow.typ === 'Schicht') {
         type = 'normal';
       }
-      createShift(
-        csvrow.ort,
-        moment(csvrow.start, 'HH.MM.DD hh:mm:ss'),
-        moment(csvrow.ende, 'HH.MM.DD hh:mm:ss'),
-        type
-      );
+      let start = moment(csvrow.start, 'DD.MM.YYYY hh:mm:ss');
+      let end = moment(csvrow.ende, 'DD.MM.YYYY hh:mm:ss');
+      createShift(csvrow.ort, start, end, type);
     });
 
   createUser('coordinator', 'coordinator', 'test', 'coord@test.de', '0123456789', 'coordinator', 'user');

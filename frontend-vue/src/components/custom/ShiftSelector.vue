@@ -1,37 +1,64 @@
 <template>
-  <v-card>
-    <v-card-title> Willkommen beim Schwarmplaner </v-card-title>
-    <v-card-subtitle>
-      <v-img width="250" src="favicon2.svg"></v-img>
-    </v-card-subtitle>
-    <slot />
-    <v-card-actions>
-      <v-btn text v-if="showBack" @click="back">{{ textBack }} </v-btn>
-      <v-spacer />
-      <v-btn :disabled="disabledNext" @click="next" :loading="loadingNext"
-        >{{ textNext }}
-      </v-btn>
-    </v-card-actions>
-  </v-card>
+  <div data-app>
+    <h1>ShiftSelector</h1>
+    <v-container fluid>
+      <v-row>
+        <v-col cols="6">
+          <v-combobox
+            v-model="jobSelection"
+            :items="jobs"
+            label="Wo willst du arbeiten?"
+          >
+            <template v-slot:selection="{ item }">
+              <span class="pr-2">
+                {{ item.name }}
+              </span>
+            </template>
+            <template v-slot:item="{ item }"> {{ item.name }} </template>
+          </v-combobox>
+        </v-col>
+        <v-col cols="6">
+          <v-combobox
+            v-model="dateSelection"
+            :items="dates"
+            label="Wann willst du arbeiten?"
+          >
+            <template v-slot:selection="{ item }">
+              <span class="pr-2">
+                {{ item }}
+              </span>
+            </template>
+            <template v-slot:item="{ item }"> {{ item }} </template>
+          </v-combobox>
+        </v-col>
+      </v-row>
+      <v-row>
+        {{ shifts }}
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "LoginCard",
+  name: "ShiftSelector",
   inheritAttrs: false,
   props: {
-    showBack: { type: Boolean, default: false },
-    textBack: { type: String, default: "Zurück" },
-    loadingNext: { type: Boolean, default: false },
-    disabledNext: { type: Boolean, default: false },
-    textNext: { type: String, default: "Weiter" },
+    jobs: { type: Array, required: true },
+    shifts: { type: Array, required: true },
+    dates: { type: Array, required: true },
   },
-  methods: {
-    next() {
-      this.$emit("next");
+  data() {
+    return { jobSelection: [], dateSelection: [] };
+  },
+  watch: {
+    jobSelection: function (newVal) {
+      this.$log.debug(newVal);
+      this.$emit("onJobSelected", newVal.id);
     },
-    back() {
-      this.$emit("back");
+    dateSelection: function (newVal) {
+      this.$log.debug(newVal);
+      this.$emit("onDateSelected", newVal);
     },
   },
 };

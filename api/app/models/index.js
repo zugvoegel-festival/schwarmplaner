@@ -39,12 +39,12 @@ const UserModel = require('./user.model.js');
 
 // Define models
 const Shift = ShiftModel(sequelize, Sequelize);
-const job = jobModel(sequelize, Sequelize);
+const Job = jobModel(sequelize, Sequelize);
 const User = UserModel(sequelize, Sequelize);
 
 //Define relations
-job.hasMany(Shift, { as: 'shifts' });
-Shift.belongsTo(job);
+Job.hasMany(Shift, { as: 'shifts' });
+Shift.belongsTo(Job);
 
 User.hasMany(Shift, { as: 'shifts' });
 Shift.belongsTo(User);
@@ -53,6 +53,6 @@ module.exports = {
   sequelize,
   Sequelize,
   Shift,
-  job,
+  Job,
   User
 };

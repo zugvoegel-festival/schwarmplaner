@@ -1,6 +1,6 @@
 const db = require('../models');
 
-const job = db.job;
+const job = db.Job;
 const { logger } = require('../helpers/logger');
 const moduleLogger = logger.child({ module: 'job controller' });
 
